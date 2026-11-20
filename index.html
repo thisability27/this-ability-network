@@ -4,9 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>This Ability Network · This Ability Orchestra</title>
+<script>
+try {
+  const savedTheme = document.cookie.match(/(?:^|;\s*)tao-theme=(light|dark)(?:;|$)/)?.[1];
+  if (savedTheme) {
+    document.documentElement.dataset.theme = savedTheme;
+  }
+} catch (error) {}
+</script>
 <style>
 :root{--bg:#f7f5fc;--surface:#fff;--ink:#1c1b33;--muted:#55536b;--navy:#2b3190;--teal:#0a8aa8;--gold:#9a6f2a;--soft:#ebe8f7;--line:#dcd7ee;--btn-ink:#fff;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14132a;--surface:#1e1d3a;--ink:#f1effb;--muted:#b9b6d4;--navy:#aab1ff;--teal:#4cc6e2;--gold:#e0b567;--soft:#26244a;--line:#37355f;--btn-ink:#14132a;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#14132a;--surface:#1e1d3a;--ink:#f1effb;--muted:#b9b6d4;--navy:#aab1ff;--teal:#4cc6e2;--gold:#e0b567;--soft:#26244a;--line:#37355f;--btn-ink:#14132a;color-scheme:dark}
 *{box-sizing:border-box}
@@ -26,7 +34,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .bar{max-width:1100px;margin:auto;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);font-weight:700}
-.brand img{height:44px;width:auto;border-radius:6px}
+.brand img{height:44px;width:auto;border-radius:6px;background:#fff}
 nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.2rem;flex-wrap:wrap;align-items:center}
 nav a,nav summary{display:inline-block;padding:.5rem .8rem;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem;cursor:pointer;list-style:none}
 nav summary::-webkit-details-marker{display:none}
@@ -71,8 +79,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 @media (max-width:760px){.hero .wrap,.two,.panel,.gallery{grid-template-columns:1fr}.panel .logo{max-width:180px}.concerts li{grid-template-columns:96px 1fr;gap:1rem}.concerts img{width:96px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
-.langbtn{font:inherit;font-weight:700;font-size:.92rem;padding:.45rem 1rem;border-radius:999px;border:2px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer}
-.langbtn:hover{background:var(--soft)}
+.header-controls{display:flex;align-items:center;gap:.5rem}
+.langbtn,.themebtn{border-radius:999px;border:2px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer}
+.langbtn{font:inherit;font-weight:700;font-size:.92rem;padding:.45rem 1rem}
+.langbtn:hover,.themebtn:hover{background:var(--soft)}
+.themebtn:not([hidden]){display:grid;place-items:center;inline-size:44px;block-size:44px;padding:0}
+.themebtn svg{display:none}
+.themebtn[data-next-theme="dark"] .theme-moon,
+.themebtn[data-next-theme="light"] .theme-sun{display:block}
 .bar{position:relative}
 :lang(ko){word-break:keep-all}
 :lang(ko) body,body:lang(ko){font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;line-height:1.75}
@@ -83,7 +97,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
 <a class="skip" href="#main">Skip to content</a>
 <header>
   <div class="bar">
-    <a class="brand" href="#top"><img src="assets/image/network-logo-color.png" width="1578" height="997" alt="This Ability Network logo"><span>This Ability Network</span></a>
+    <a class="brand" href="#top"><img src="assets/image/network-logo.jpg" alt="This Ability Network logo"><span>This Ability Network</span></a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#network">The Network</a></li>
@@ -100,7 +114,18 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-s
         <li><a href="#contact">Contact &amp; support</a></li>
       </ul>
     </nav>
-    <button id="lang" class="langbtn" type="button" lang="ko" aria-label="Switch language to Korean">한국어</button>
+    <div class="header-controls">
+      <button id="theme" class="themebtn" type="button" hidden>
+        <svg class="theme-sun" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4m0-14.2-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+        <svg class="theme-moon" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M20.9 13.3A9 9 0 0 1 10.7 3.1a9 9 0 1 0 10.2 10.2Z"></path>
+        </svg>
+      </button>
+      <button id="lang" class="langbtn" type="button" lang="ko" aria-label="Switch language to Korean">한국어</button>
+    </div>
   </div>
 </header>
 
@@ -281,6 +306,34 @@ var items=[],btn=document.getElementById('lang');
 var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),x;
 while(x=w.nextNode()){var p=x.parentNode;if(p===btn||/^(SCRIPT|STYLE)$/.test(p.nodeName))continue;var k=n(x.nodeValue);if(K[k])items.push({a:0,o:x,en:x.nodeValue,ko:x.nodeValue.replace(x.nodeValue.trim(),K[k])})}
 document.querySelectorAll('[alt]').forEach(function(e){var k=n(e.getAttribute('alt'));if(K[k])items.push({a:1,o:e,en:e.getAttribute('alt'),ko:K[k]})});
+const root = document.documentElement;
+const themeButton = document.getElementById('theme');
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+const themeLabels = {
+  en: {light: 'Switch to light theme', dark: 'Switch to dark theme'},
+  ko: {light: '밝은 테마로 전환', dark: '어두운 테마로 전환'}
+};
+
+function updateThemeButton() {
+  const currentTheme = root.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+  const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const label = themeLabels[root.lang][nextTheme];
+  themeButton.dataset.nextTheme = nextTheme;
+  themeButton.setAttribute('aria-label', label);
+  themeButton.title = label;
+}
+
+themeButton.addEventListener('click', function () {
+  const theme = themeButton.dataset.nextTheme;
+  root.dataset.theme = theme;
+  const secure = location.protocol === 'https:' ? '; Secure' : '';
+  try {
+    document.cookie = `tao-theme=${theme}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`;
+  } catch (error) {}
+  updateThemeButton();
+});
+systemDark.addEventListener('change', updateThemeButton);
+
 function set(l){
  items.forEach(function(i){var v=l==='ko'?i.ko:i.en;if(i.a)i.o.setAttribute('alt',v);else i.o.nodeValue=v});
  document.documentElement.lang=l;
@@ -288,10 +341,13 @@ function set(l){
  btn.setAttribute('aria-label',l==='ko'?'Switch language to English':'한국어로 보기');
  document.title=l==='ko'?'This Ability Network · 디스 어빌리티 오케스트라':'This Ability Network · This Ability Orchestra';
  try{localStorage.setItem('tao-lang',l)}catch(e){}
+ updateThemeButton();
 }
 btn.addEventListener('click',function(){set(document.documentElement.lang==='ko'?'en':'ko')});
 var s=null;try{s=localStorage.getItem('tao-lang')}catch(e){}
 if(s==='ko')set('ko');
+else updateThemeButton();
+themeButton.hidden = false;
 })();
 </script>
 </body>
