@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>This Ability Network · This Ability Orchestra</title>
+<style>
+:root{--bg:#f7f5fc;--surface:#fff;--ink:#1c1b33;--muted:#55536b;--navy:#2b3190;--teal:#0a8aa8;--gold:#9a6f2a;--soft:#ebe8f7;--line:#dcd7ee;--btn-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14132a;--surface:#1e1d3a;--ink:#f1effb;--muted:#b9b6d4;--navy:#aab1ff;--teal:#4cc6e2;--gold:#e0b567;--soft:#26244a;--line:#37355f;--btn-ink:#14132a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14132a;--surface:#1e1d3a;--ink:#f1effb;--muted:#b9b6d4;--navy:#aab1ff;--teal:#4cc6e2;--gold:#e0b567;--soft:#26244a;--line:#37355f;--btn-ink:#14132a;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.15;margin:0 0 .8rem;color:var(--navy);font-weight:700}
+h1{font-size:clamp(2.3rem,6.4vw,4rem);letter-spacing:-.015em}
+h2{font-size:clamp(1.8rem,4.2vw,2.5rem)}
+h3{font-size:1.3rem}
+p{margin:0 0 1rem;max-width:62ch}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+img{max-width:100%;height:auto;display:block}
+.skip{position:absolute;left:-999px;top:0;background:var(--navy);color:var(--btn-ink);padding:.6rem 1rem;z-index:30}
+.skip:focus{left:8px;top:8px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:21}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:auto;padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);font-weight:700}
+.brand img{height:44px;width:auto;border-radius:6px;background:#fff}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.2rem;flex-wrap:wrap;align-items:center}
+nav a,nav summary{display:inline-block;padding:.5rem .8rem;border-radius:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem;cursor:pointer;list-style:none}
+nav summary::-webkit-details-marker{display:none}
+nav a:hover,nav summary:hover{background:var(--soft)}
+details.dd{position:relative}
+.menu{position:absolute;right:0;top:100%;min-width:250px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:.4rem;box-shadow:0 12px 30px rgba(20,19,60,.18)}
+.menu a{display:block}
+.wrap{max-width:1100px;margin:auto;padding:0 1.25rem}
+section{padding:4.5rem 0}
+.hero{padding:3.5rem 0 2rem}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:2.5rem;align-items:center}
+.hero img.photo{border-radius:28px 28px 120px 28px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.lead{font-size:1.2rem;color:var(--muted)}
+.btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+.btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;font-weight:700;text-decoration:none;background:var(--navy);color:var(--btn-ink);border:2px solid var(--navy)}
+.btn.alt{background:transparent;color:var(--navy)}
+.staff{display:block;width:100%;height:46px;color:var(--teal);margin-top:2.5rem}
+.panel{background:var(--soft);border-radius:32px;padding:clamp(1.5rem,5vw,3.5rem);display:grid;grid-template-columns:200px 1fr;gap:2.5rem;align-items:center}
+.panel .logo{background:#fff;border-radius:20px;padding:1rem}
+.crumb{font-size:.92rem;color:var(--muted);margin-bottom:.8rem}
+.crumb a{color:var(--muted)}
+blockquote{margin:1.5rem 0 0;padding-left:1.2rem;border-left:4px solid var(--teal);font-family:Georgia,serif;font-size:1.15rem;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.two img{border-radius:22px;width:100%}
+.concerts{list-style:none;margin:2rem 0 0;padding:0;display:grid;gap:1.25rem}
+.concerts li{display:grid;grid-template-columns:130px 1fr;gap:1.5rem;align-items:start;padding-bottom:1.25rem;border-bottom:1px solid var(--line)}
+.concerts li:last-child{border-bottom:0}
+.concerts img{border-radius:10px;width:130px}
+.when{font-weight:700;color:var(--gold);margin:0 0 .15rem}
+.concerts p{margin-bottom:.5rem}
+.event{background:var(--navy);color:var(--btn-ink);border-radius:32px;padding:clamp(1.75rem,5vw,3.5rem)}
+.event h2{color:var(--btn-ink)}
+.event p{color:inherit}
+.event .btn{background:var(--btn-ink);color:var(--navy);border-color:var(--btn-ink)}
+.event ul{margin:0 0 1rem;padding-left:1.2rem}
+.gallery{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem;margin-top:2rem}
+.gallery img{border-radius:18px;width:100%;height:100%;object-fit:cover}
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.5rem;margin:1.5rem 0}
+.contact dt{font-weight:700}
+.contact dd{margin:0}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.95rem}
+@media (max-width:760px){.hero .wrap,.two,.panel,.gallery{grid-template-columns:1fr}.panel .logo{max-width:180px}.concerts li{grid-template-columns:96px 1fr;gap:1rem}.concerts img{width:96px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.langbtn{font:inherit;font-weight:700;font-size:.92rem;padding:.45rem 1rem;border-radius:999px;border:2px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer}
+.langbtn:hover{background:var(--soft)}
+.bar{position:relative}
+:lang(ko){word-break:keep-all}
+:lang(ko) body,body:lang(ko){font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;line-height:1.75}
+:lang(ko) h1,:lang(ko) h2,:lang(ko) h3,:lang(ko) blockquote{font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;line-height:1.3}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="bar">
+    <a class="brand" href="#top"><img src="assets/image/network-logo.jpg" alt="This Ability Network logo"><span>This Ability Network</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#network">The Network</a></li>
+        <li>
+          <details class="dd">
+            <summary>Programs ▾</summary>
+            <div class="menu">
+              <a href="#orchestra">This Ability Orchestra</a>
+              <a href="#concerts">Concerts</a>
+              <a href="#2027">2027 International Event</a>
+            </div>
+          </details>
+        </li>
+        <li><a href="#contact">Contact &amp; support</a></li>
+      </ul>
+    </nav>
+    <button id="lang" class="langbtn" type="button" lang="ko" aria-label="Switch language to Korean">한국어</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <h1>Music makes room for everyone.</h1>
+        <p class="lead">This Ability Network is a Los Angeles nonprofit. Through This Ability Orchestra, it brings musicians of all abilities together to play, perform, and give back to the community.</p>
+        <div class="btns">
+          <a class="btn" href="#orchestra">Meet the Orchestra</a>
+          <a class="btn alt" href="#2027">See the 2027 event</a>
+        </div>
+      </div>
+      <img class="photo" src="assets/image/orchestra-stage.jpg" alt="This Ability Orchestra performing on stage, with strings, flute, and piano, led by their conductor" width="1200" height="801">
+    </div>
+    <div class="wrap">
+      <svg class="staff" viewBox="0 0 1000 46" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M0 8C200 -2 300 18 500 8S800 -2 1000 8"/><path d="M0 16C200 6 300 26 500 16S800 6 1000 16" opacity=".8"/><path d="M0 24C200 14 300 34 500 24S800 14 1000 24" opacity=".6"/><path d="M0 32C200 22 300 42 500 32S800 22 1000 32" opacity=".4"/></svg>
+    </div>
+  </div>
+
+  <section id="network" aria-labelledby="net-h">
+    <div class="wrap">
+      <h2 id="net-h">About This Ability Network</h2>
+      <p class="lead">This Ability Network is a 501(c)(3) nonprofit in Los Angeles. We believe that the stage, the rehearsal room, and the community all work better when everyone has a place in them.</p>
+      <p>Our work centers on This Ability Orchestra, which has been making music since 2014, and on the concerts and events that grow from it.</p>
+    </div>
+  </section>
+
+  <section id="orchestra" aria-labelledby="orch-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="panel">
+        <img class="logo" src="assets/image/orchestra-logo.jpg" alt="This Ability Orchestra logo: a treble clef with flowing staff lines" width="360" height="506">
+        <div>
+          <p class="crumb"><a href="#network">This Ability Network</a> › Programs › This Ability Orchestra</p>
+          <h2 id="orch-h">This Ability Orchestra</h2>
+          <p class="lead">We bring together musicians of all abilities in an inclusive, collaborative space. Through the universal language of music, each participant can express themselves, connect with others, and have their unique contributions celebrated.</p>
+          <blockquote>We enhance connections to the world through music. We deepen understanding of inclusive environments.</blockquote>
+        </div>
+      </div>
+      <div class="two" style="margin-top:3rem">
+        <img src="assets/image/orchestra-members.jpg" alt="Members of This Ability Orchestra in matching navy and yellow polo shirts, posing together" width="1000" height="750">
+        <div>
+          <h3>Making music in Los Angeles since 2014</h3>
+          <p>Our members play strings, winds, piano, and more, side by side. Rehearsals and concerts are built around what each musician can do and brings to the group.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="concerts" aria-labelledby="con-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="con-h">Concerts that give back</h2>
+      <p class="lead">Each year the Orchestra performs a fundraiser concert for Children’s Hospital Los Angeles, alongside other performances through the year.</p>
+      <ul class="concerts">
+        <li>
+          <img src="assets/image/chla-fundraiser-2026.jpg" alt="Poster for the 2026 CHLA Fundraiser Concert" width="130" height="168">
+          <div>
+            <p class="when">July 25, 2026, 11 a.m.</p>
+            <h3>2026 CHLA Fundraiser Concert</h3>
+            <p>Proceeds supported the Spiritual Care Services Department at Children’s Hospital Los Angeles. Supporters could take home a CHLA eco bag for $20.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/image/orchestra-10th-anniversary.jpg" alt="Poster for the This Ability Orchestra 10th anniversary concert" width="130" height="173">
+          <div>
+            <p class="when">October 19, 5 p.m.</p>
+            <h3>10th Anniversary Concert</h3>
+            <p>A celebration of ten years, with soprano Hae Eun Jeon, baritone Young Kwon, and the Vocielesti Children’s Choir.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/image/celebrating-supermoms-2018.jpg" alt="Poster for Celebrating Supermoms, 2018" width="130" height="166">
+          <div>
+            <p class="when">May 11, 2018, 7 p.m.</p>
+            <h3>Celebrating Supermoms</h3>
+            <p>A Mother’s Day benefit concert for Children’s Hospital Los Angeles at YoungNak Church of LA. Proceeds supported the Mark Taper–Johnny Mercer Artists Program.</p>
+          </div>
+        </li>
+        <li>
+          <img src="assets/image/celebrating-supermoms-2017.jpg" alt="Poster for Celebrating Supermoms, 2017" width="130" height="176">
+          <div>
+            <p class="when">May 12, 2017, 7 p.m.</p>
+            <h3>Celebrating Supermoms</h3>
+            <p>Presented at Calvary Faith Church in support of Children’s Hospital Los Angeles and its Mark Taper–Johnny Mercer Artists Program.</p>
+          </div>
+        </li>
+      </ul>
+      <div class="gallery">
+        <img src="assets/image/orchestra-anniversary-group.jpg" alt="A large group of musicians, families, and supporters on stage beneath a screen reading Thank you for 10 years of support" width="1100" height="733">
+        <img src="assets/image/orchestra-sanctuary.jpg" alt="The Orchestra performing in front of an audience in a historic sanctuary" width="900" height="601">
+      </div>
+    </div>
+  </section>
+
+  <section id="2027" aria-labelledby="ev-h" style="padding-top:0">
+    <div class="wrap">
+      <div class="event">
+        <h2 id="ev-h">2027 International Event for Musicians with Developmental Disabilities</h2>
+        <p class="lead" style="color:inherit">We are planning and promoting an international event in 2027 that brings musicians with developmental disabilities together to learn and perform.</p>
+        <ul>
+          <li>Master classes, including private and group lessons</li>
+          <li>Community events alongside, which we are exploring</li>
+        </ul>
+        <p>Dates, location, and registration are still being planned. Write to us to get updates first.</p>
+        <a class="btn" href="mailto:info@thisabilitynetwork.com?subject=2027%20International%20Event">Get event updates</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="ct-h" style="padding-top:0">
+    <div class="wrap">
+      <h2 id="ct-h">Contact and support</h2>
+      <p class="lead">To join, volunteer, partner, or give, reach out. We would love to hear from you.</p>
+      <dl>
+        <dt>Email</dt><dd><a href="mailto:info@thisabilitynetwork.com">info@thisabilitynetwork.com</a></dd>
+        <dt>Phone</dt><dd><a href="tel:+13239793388">323-979-3388</a></dd>
+        <dt>Address</dt><dd>1721 N Broadway Ave, Los Angeles</dd>
+        <dt>Nonprofit</dt><dd>This Ability Network, 501(c)(3), EIN 93-1977627</dd>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© This Ability Network · This Ability Orchestra · Los Angeles, California</div>
+</footer>
+<script>
+(function(){
+var K={
+"Skip to content":"본문으로 건너뛰기",
+"The Network":"네트워크 소개","Programs ▾":"프로그램 ▾","Concerts":"연주회","2027 International Event":"2027 국제 행사","Contact & support":"문의 및 후원",
+"Music makes room for everyone.":"음악은 모두를 위한 자리를 만듭니다.",
+"This Ability Network is a Los Angeles nonprofit. Through This Ability Orchestra, it brings musicians of all abilities together to play, perform, and give back to the community.":"This Ability Network는 로스앤젤레스의 비영리단체입니다. This Ability Orchestra를 통해 모든 능력의 음악가들이 함께 연주하고 공연하며 지역사회에 나눔을 실천합니다.",
+"Meet the Orchestra":"오케스트라 소개","See the 2027 event":"2027 행사 보기",
+"About This Ability Network":"This Ability Network 소개",
+"This Ability Network is a 501(c)(3) nonprofit in Los Angeles. We believe that the stage, the rehearsal room, and the community all work better when everyone has a place in them.":"This Ability Network는 로스앤젤레스의 501(c)(3) 비영리단체입니다. 무대도, 연습실도, 지역사회도 모두가 자기 자리를 가질 때 더 좋아진다고 믿습니다.",
+"Our work centers on This Ability Orchestra, which has been making music since 2014, and on the concerts and events that grow from it.":"저희의 활동은 2014년부터 음악을 만들어 온 This Ability Orchestra와, 여기서 비롯된 연주회와 행사를 중심으로 합니다.",
+"› Programs › This Ability Orchestra":"› 프로그램 › This Ability Orchestra",
+"We bring together musicians of all abilities in an inclusive, collaborative space. Through the universal language of music, each participant can express themselves, connect with others, and have their unique contributions celebrated.":"다양한 능력의 음악가들이 포용적이고 협력적인 공간에 함께 모입니다. 음악이라는 보편적인 언어를 통해 모든 참여자가 자신을 표현하고, 서로 연결되며, 저마다의 고유한 기여를 인정받습니다.",
+"We enhance connections to the world through music. We deepen understanding of inclusive environments.":"우리는 음악을 통해 세상과의 연결을 넓힙니다. 포용적인 환경에 대한 이해를 깊게 합니다.",
+"Making music in Los Angeles since 2014":"2014년부터 로스앤젤레스에서 음악을 만들어 왔습니다",
+"Our members play strings, winds, piano, and more, side by side. Rehearsals and concerts are built around what each musician can do and brings to the group.":"단원들은 현악기, 관악기, 피아노 등을 나란히 연주합니다. 연습과 연주회는 각 음악가가 할 수 있는 것과 팀에 가져오는 것을 중심으로 꾸려집니다.",
+"Concerts that give back":"나눔이 되는 연주회",
+"Each year the Orchestra performs a fundraiser concert for Children’s Hospital Los Angeles, alongside other performances through the year.":"오케스트라는 매년 Children’s Hospital Los Angeles를 돕는 후원 콘서트를 열고, 한 해 동안 다른 공연도 함께 선보입니다.",
+"July 25, 2026, 11 a.m.":"2026년 7월 25일 오전 11시","2026 CHLA Fundraiser Concert":"2026 CHLA 후원 콘서트",
+"Proceeds supported the Spiritual Care Services Department at Children’s Hospital Los Angeles. Supporters could take home a CHLA eco bag for $20.":"수익금은 Children’s Hospital Los Angeles의 Spiritual Care Services 부서를 위해 사용되었습니다. 후원자는 $20에 CHLA 에코백을 받을 수 있었습니다.",
+"October 19, 5 p.m.":"10월 19일 오후 5시","10th Anniversary Concert":"10주년 기념 콘서트",
+"A celebration of ten years, with soprano Hae Eun Jeon, baritone Young Kwon, and the Vocielesti Children’s Choir.":"10년을 기념하는 무대로, 소프라노 Hae Eun Jeon, 바리톤 Young Kwon, Vocielesti Children’s Choir가 함께했습니다.",
+"May 11, 2018, 7 p.m.":"2018년 5월 11일 오후 7시","Celebrating Supermoms":"Celebrating Supermoms (슈퍼맘을 기리며)",
+"A Mother’s Day benefit concert for Children’s Hospital Los Angeles at YoungNak Church of LA. Proceeds supported the Mark Taper–Johnny Mercer Artists Program.":"YoungNak Church of LA에서 열린 Children’s Hospital Los Angeles를 위한 어머니날 후원 콘서트입니다. 수익금은 Mark Taper–Johnny Mercer Artists Program을 위해 사용되었습니다.",
+"May 12, 2017, 7 p.m.":"2017년 5월 12일 오후 7시",
+"Presented at Calvary Faith Church in support of Children’s Hospital Los Angeles and its Mark Taper–Johnny Mercer Artists Program.":"Calvary Faith Church에서 열렸으며, Children’s Hospital Los Angeles와 Mark Taper–Johnny Mercer Artists Program을 후원했습니다.",
+"2027 International Event for Musicians with Developmental Disabilities":"발달장애 음악가를 위한 2027 국제 행사",
+"We are planning and promoting an international event in 2027 that brings musicians with developmental disabilities together to learn and perform.":"2027년, 발달장애 음악가들이 함께 배우고 연주하는 국제 행사를 기획하고 알리고 있습니다.",
+"Master classes, including private and group lessons":"개인 및 그룹 레슨을 포함한 마스터클래스",
+"Community events alongside, which we are exploring":"함께 열 지역사회 행사 (검토 중)",
+"Dates, location, and registration are still being planned. Write to us to get updates first.":"날짜, 장소, 등록 방법은 아직 준비 중입니다. 소식을 가장 먼저 받으시려면 이메일로 연락해 주세요.",
+"Get event updates":"행사 소식 받기",
+"Contact and support":"문의 및 후원",
+"To join, volunteer, partner, or give, reach out. We would love to hear from you.":"참여, 봉사, 협력, 후원을 원하시면 연락해 주세요. 여러분의 연락을 기다립니다.",
+"Email":"이메일","Phone":"전화","Address":"주소","Nonprofit":"비영리단체",
+"This Ability Network, 501(c)(3), EIN 93-1977627":"This Ability Network, 501(c)(3), 고유번호(EIN) 93-1977627",
+"© This Ability Network · This Ability Orchestra · Los Angeles, California":"© This Ability Network · This Ability Orchestra · 미국 캘리포니아주 로스앤젤레스",
+"This Ability Network logo":"This Ability Network 로고",
+"This Ability Orchestra performing on stage, with strings, flute, and piano, led by their conductor":"지휘자와 함께 현악기, 플루트, 피아노를 연주하는 This Ability Orchestra 무대",
+"This Ability Orchestra logo: a treble clef with flowing staff lines":"높은음자리표와 흐르는 오선이 그려진 This Ability Orchestra 로고",
+"Members of This Ability Orchestra in matching navy and yellow polo shirts, posing together":"남색과 노란색 단체 폴로셔츠를 입고 함께 사진을 찍은 단원들",
+"Poster for the 2026 CHLA Fundraiser Concert":"2026 CHLA 후원 콘서트 포스터",
+"Poster for the This Ability Orchestra 10th anniversary concert":"This Ability Orchestra 10주년 기념 콘서트 포스터",
+"Poster for Celebrating Supermoms, 2018":"2018 Celebrating Supermoms 포스터",
+"Poster for Celebrating Supermoms, 2017":"2017 Celebrating Supermoms 포스터",
+"A large group of musicians, families, and supporters on stage beneath a screen reading Thank you for 10 years of support":"‘10년간의 후원에 감사드립니다’ 화면 아래 무대에 모인 음악가, 가족, 후원자들",
+"The Orchestra performing in front of an audience in a historic sanctuary":"오래된 예배당에서 관객 앞에서 연주하는 오케스트라"
+};
+var n=function(s){return s.replace(/\s+/g,' ').trim()};
+var items=[],btn=document.getElementById('lang');
+var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),x;
+while(x=w.nextNode()){var p=x.parentNode;if(p===btn||/^(SCRIPT|STYLE)$/.test(p.nodeName))continue;var k=n(x.nodeValue);if(K[k])items.push({a:0,o:x,en:x.nodeValue,ko:x.nodeValue.replace(x.nodeValue.trim(),K[k])})}
+document.querySelectorAll('[alt]').forEach(function(e){var k=n(e.getAttribute('alt'));if(K[k])items.push({a:1,o:e,en:e.getAttribute('alt'),ko:K[k]})});
+function set(l){
+ items.forEach(function(i){var v=l==='ko'?i.ko:i.en;if(i.a)i.o.setAttribute('alt',v);else i.o.nodeValue=v});
+ document.documentElement.lang=l;
+ btn.textContent=l==='ko'?'English':'한국어';btn.lang=l==='ko'?'en':'ko';
+ btn.setAttribute('aria-label',l==='ko'?'Switch language to English':'한국어로 보기');
+ document.title=l==='ko'?'This Ability Network · 디스 어빌리티 오케스트라':'This Ability Network · This Ability Orchestra';
+ try{localStorage.setItem('tao-lang',l)}catch(e){}
+}
+btn.addEventListener('click',function(){set(document.documentElement.lang==='ko'?'en':'ko')});
+var s=null;try{s=localStorage.getItem('tao-lang')}catch(e){}
+if(s==='ko')set('ko');
+})();
+</script>
+</body>
+</html>
