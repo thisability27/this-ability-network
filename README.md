@@ -2,6 +2,8 @@
 
 # thisability27/this-ability-network
 
+<img width="220" src="https://raw.githubusercontent.com/thisability27/this-ability-network/main/assets/image/network-logo-color.png" alt="This Ability Network 로고" />
+
 This Ability Network와 This Ability Orchestra의 한영 웹사이트입니다.
 
 </div>
