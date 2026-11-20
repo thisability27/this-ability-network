@@ -1,0 +1,13 @@
+{
+  "name": "this-ability-network",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "changeset": "changeset add",
+    "changeset:status": "changeset status",
+    "release:version": "changeset version && npm install --package-lock-only --ignore-scripts"
+  },
+  "devDependencies": {
+    "@changesets/cli": "3.0.3"
+  }
+}
