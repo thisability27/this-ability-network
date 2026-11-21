@@ -1,0 +1,7 @@
+# 상단 메뉴 이름입니다. 키는 hugo.toml의 메뉴 identifier와 같습니다.
+tao-network: The Network
+tao-programs: Programs
+tao-orchestra: This Ability Orchestra
+tao-concerts: Concerts
+tao-event-2027: 2027 International Event
+tao-contact: Contact & Support

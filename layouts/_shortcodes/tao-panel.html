@@ -1,0 +1,15 @@
+{{- /*
+직접 만든 shortcode입니다(Hextra 파일 아님). 원본의 오케스트라 소개 패널로, 왼쪽에 로고, 오른쪽에 본문을 둡니다.
+{{< tao-panel >}} 형태로 호출하면 안쪽 마크다운을 이 shortcode가 렌더링합니다. 안쪽에 다른 shortcode는 넣을 수 없습니다.
+
+@param {string} logo 로고 이미지 경로
+@param {string} alt 로고 대체 텍스트
+@param {int} width 로고 너비
+@param {int} height 로고 높이
+*/ -}}
+<div class="tao-panel not-prose">
+  <img class="tao-panel-logo" src="{{ .Get "logo" | relURL }}" alt="{{ .Get "alt" }}" width="{{ .Get "width" | default 360 }}" height="{{ .Get "height" | default 506 }}" loading="lazy" decoding="async">
+  <div class="tao-panel-body">
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</div>

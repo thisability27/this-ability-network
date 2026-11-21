@@ -1,0 +1,276 @@
+/*
+ * Hextra의 공식 확장 지점(assets/css/custom.css)입니다. Hextra 파일은 수정하지 않습니다.
+ * 직접 만든 클래스는 tao- 접두사를 씁니다.
+ *
+ * Hextra 내부 클래스에 의존하는 선택자 목록(Hextra v0.13.0 확인).
+ * Hextra를 업데이트하면 아래 이름이 그대로인지 먼저 확인합니다.
+ *   - .hextra-nav-container-blur   상단 메뉴 배경
+ *   - .hextra-nav-container nav > a:first-child span   상단 메뉴의 로고 제목
+ *   - .hextra-footer               푸터 배경
+ *   - .hextra-card-image           카드 이미지
+ *   - .hextra-card-icon            카드 제목(이름과 달리 제목 텍스트를 감싸는 요소)
+ *   - .hextra-theme-toggle-options li > button[data-item="system"]   테마 선택의 "시스템" 항목(문서에 없는 클래스)
+ *   - [class~="hx:items-start"]    홈 레이아웃의 본문 컨테이너(문단 간격 보정)
+ *   - [class*="hextra-"]           홈 본문 안의 Hextra 컴포넌트(위 간격 보정)
+ * 위험도: 공식 문서(Customizing Hextra)에 이름이 올라 있는 .hextra-nav-container-blur, .hextra-footer,
+ * .hextra-card-image, .hextra-card-icon은 비교적 안정적입니다. 문서에 없는 [class~="hx:items-start"],
+ * [class*="hextra-"], nav > a:first-child span은 구조가 바뀌면 깨질 수 있어 업데이트 후 가장 먼저 봅니다.
+ * 동작(JS)이 기대는 클래스는 layouts/_partials/custom/head-end.html 맨 위 주석에 있습니다.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ------------------------------------------------------------------
+ * 브랜드 팔레트: 원본 index.html의 라이트, 다크 색을 그대로 가져옵니다.
+ * Hextra는 .dark 클래스로 다크 테마를 구분합니다.
+ * ------------------------------------------------------------------ */
+:root {
+  --tao-bg: #f7f5fc;
+  --tao-surface: #fff;
+  --tao-ink: #1c1b33;
+  --tao-muted: #55536b;
+  --tao-navy: #2b3190;
+  --tao-teal: #0a8aa8;
+  --tao-gold: #9a6f2a;
+  --tao-soft: #ebe8f7;
+  --tao-line: #dcd7ee;
+  --tao-btn-ink: #fff;
+  /*
+   * 글꼴 체계
+   * - display: 영문 제목과 카드 제목(한국어, 영어 페이지 모두). Fraunces에는 한글 글리프가 없어
+   *   한글은 뒤에 둔 Pretendard가 받습니다.
+   * - text: 영문 본문과 한글 전체.
+   */
+  --tao-font-text: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --tao-font-display: "Fraunces", var(--tao-font-text);
+
+  /* Hextra 기본 강조색을 남색(#2b3190)으로 맞춥니다. */
+  --primary-hue: 236deg;
+  --primary-saturation: 54%;
+  --primary-lightness: 37%;
+}
+
+.dark {
+  --tao-bg: #14132a;
+  --tao-surface: #1e1d3a;
+  --tao-ink: #f1effb;
+  --tao-muted: #b9b6d4;
+  --tao-navy: #aab1ff;
+  --tao-teal: #4cc6e2;
+  --tao-gold: #e0b567;
+  --tao-soft: #26244a;
+  --tao-line: #37355f;
+  --tao-btn-ink: #14132a;
+
+  --primary-hue: 236deg;
+  --primary-saturation: 70%;
+  --primary-lightness: 60%;
+}
+
+body {
+  background: var(--tao-bg);
+  color: var(--tao-ink);
+}
+
+.hextra-nav-container-blur { background: var(--tao-bg); }
+.hextra-footer { background: var(--tao-soft); }
+
+/* 영문 본문과 한글 전체는 Pretendard Variable입니다. 한글은 단어 중간에서 줄바꿈하지 않습니다. */
+body {
+  font-family: var(--tao-font-text);
+  font-weight: 400;
+}
+:lang(ko) body,
+body:lang(ko) {
+  word-break: keep-all;
+}
+
+/*
+ * 제목과 카드 제목은 Fraunces와 남색입니다. 한국어 페이지의 한글 제목도 같은 규칙이며
+ * 한글 글리프는 Pretendard로 대체됩니다. SOFT와 WONK은 0으로 두어 절제된 인상을 유지합니다.
+ */
+main h1,
+main h2,
+main h3,
+.section-title,
+.hextra-card-icon {
+  font-family: var(--tao-font-display);
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+main h1,
+main h2,
+main h3,
+.section-title {
+  color: var(--tao-navy);
+  font-weight: 560;
+}
+main h3,
+.hextra-card-icon {
+  font-weight: 600;
+}
+
+/* 상단 메뉴의 로고 제목도 제목 글꼴입니다. 굵기는 불러온 Fraunces 범위(400에서 700) 안에서 맞춥니다. */
+.hextra-nav-container nav > a:first-child span {
+  font-family: var(--tao-font-display);
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------
+ * 본문 섹션
+ * ------------------------------------------------------------------ */
+.section-title {
+  margin-top: 3.5rem;
+  padding-bottom: 0.5rem;
+  font-size: clamp(1.8rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+}
+
+/* Hextra 홈 레이아웃은 본문을 flex 컬럼으로 놓아 마진이 없으므로 간격을 직접 줍니다. */
+[class~="hx:items-start"] > :is(p, blockquote, ul),
+.tao-panel-body :is(p, blockquote, ul),
+.tao-event :is(p, ul) {
+  max-width: 46rem;
+  margin-top: 0.875rem;
+  line-height: 1.7;
+}
+
+[class~="hx:items-start"] > ul,
+.tao-event ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+[class~="hx:items-start"] > blockquote,
+.tao-panel-body blockquote {
+  padding-left: 1.2rem;
+  border-left: 4px solid var(--tao-teal);
+  font-size: 1.15rem;
+  color: var(--tao-ink);
+}
+
+[class~="hx:items-start"] > :is([class*="hextra-"], .tao-panel, .tao-event, .tao-staff) {
+  margin-top: 1.5rem;
+}
+
+a { text-underline-offset: 0.2em; }
+
+/* ------------------------------------------------------------------
+ * 이미지 규칙: 고정 비율 틀에 맞춰 채우고 가운데 기준으로 넘치는 부분을 자릅니다.
+ * 짧은 쪽에 크기를 맞추는 object-fit: cover이며, 원본의 사진 규칙(4/3, cover)과 같습니다.
+ * 원본 비율 보기는 링크로 연결한 원본 이미지와 갤러리 라이트박스가 맡습니다.
+ * ------------------------------------------------------------------ */
+.hextra-card-image,
+.tao-hero img,
+.tao-split-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 첫 화면 */
+.tao-hero { align-items: center; gap: 2.5rem; }
+.tao-hero img { border-radius: 28px 28px 120px 28px; }
+/* 첫 화면 사진은 눌러서 확대할 수 있습니다. */
+.tao-hero a[data-pswp-width] { cursor: zoom-in; }
+.tao-hero h1 { letter-spacing: -0.015em; }
+
+/* 사진과 설명이 나란한 섹션: 원본처럼 사진을 왼쪽에 둡니다. */
+.tao-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+}
+.tao-split-image { border-radius: 22px; }
+.tao-split-body h3 { margin: 0 0 0.4rem; font-size: 1.3rem; line-height: 1.3; font-weight: 600; }
+.tao-split-body p { margin-top: 0.5rem; line-height: 1.7; }
+
+/* 오선 장식 */
+.tao-staff {
+  display: block;
+  width: 100%;
+  height: 46px;
+  color: var(--tao-teal);
+  margin-top: 2.5rem;
+}
+
+/* 오케스트라 소개 패널 */
+.tao-panel {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border-radius: 32px;
+  background: var(--tao-soft);
+}
+.tao-panel-logo {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  border-radius: 20px;
+  background: #fff;
+}
+.tao-panel .section-title { margin-top: 0; }
+.tao-crumb,
+.tao-panel-body p.tao-crumb {
+  margin: 0 0 0.8rem;
+  font-size: 0.92rem;
+  color: var(--tao-muted);
+}
+.tao-crumb a { color: var(--tao-muted); }
+
+/* 2027 국제 행사 블록 */
+.tao-event {
+  width: 100%;
+  margin-top: 3.5rem;
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  border-radius: 32px;
+  background: var(--tao-navy);
+  color: var(--tao-btn-ink);
+}
+.tao-event h2,
+.tao-event .section-title { margin-top: 0; color: var(--tao-btn-ink); }
+.tao-event a { color: inherit; }
+
+/* 행사 블록의 버튼: 원본의 .event .btn(밝은 배경, 남색 글자)과 같습니다. */
+.tao-event .tao-btn { max-width: none; margin-top: 1.5rem; }
+.tao-event .tao-btn a {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--tao-btn-ink);
+  color: var(--tao-navy);
+}
+
+/*
+ * 테마 선택에서 "시스템" 항목을 숨깁니다. Hextra에는 이 항목을 끄는 설정이 없고
+ * theme-toggle.html에 고정되어 있습니다. 파일 전체를 오버라이드하는 대신 CSS로 숨기며,
+ * 저장된 system 값은 custom/head-end.html이 라이트로 바꿉니다.
+ */
+.hextra-theme-toggle-options li:has(> button[data-item="system"]) { display: none; }
+
+/* 푸터 */
+.tao-footer { padding: 1.5rem 0; font-size: 0.95rem; color: var(--tao-muted); }
+
+@media (max-width: 760px) {
+  .tao-panel,
+  .tao-split { grid-template-columns: 1fr; gap: 1.5rem; }
+  .tao-panel-logo { max-width: 180px; }
+  .tao-hero { gap: 1.5rem; }
+}

@@ -1,0 +1,28 @@
+{{- /*
+오버라이드: Hugo의 alias 템플릿(layouts/alias.html). Hextra 파일이 아니라 Hugo 기본 템플릿을 대신합니다.
+이유: 루트 주소에서 저장된 언어(tao-lang)가 한국어면 /ko/로 보내기 위해서입니다.
+스크립트가 없으면 meta refresh가 기본 언어로 이동합니다.
+*/ -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.Title }}</title>
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url={{ .Permalink }}">
+  <script>
+    (function () {
+      var target = {{ .Permalink }};
+      var saved = null;
+      try { saved = localStorage.getItem('tao-lang'); } catch (e) {}
+      if (saved === 'ko') target = target.replace(/\/en\/$/, '/ko/');
+      location.replace(target + location.search + location.hash);
+    })();
+  </script>
+</head>
+<body>
+  <p><a href="{{ .Permalink }}">{{ .Permalink }}</a></p>
+</body>
+</html>

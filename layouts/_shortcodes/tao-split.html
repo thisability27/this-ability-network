@@ -1,0 +1,15 @@
+{{- /*
+직접 만든 shortcode입니다(Hextra 파일 아님). 원본의 "사진과 설명이 나란한" 섹션으로, 사진을 왼쪽에 둡니다.
+{{< tao-split >}} 형태로 호출하면 안쪽 마크다운을 이 shortcode가 렌더링합니다. 안쪽에 다른 shortcode는 넣을 수 없습니다.
+
+@param {string} image 사진 경로
+@param {string} alt 사진 대체 텍스트
+@param {int} width 사진 너비
+@param {int} height 사진 높이
+*/ -}}
+<div class="tao-split not-prose">
+  <img class="tao-split-image" src="{{ .Get "image" | relURL }}" alt="{{ .Get "alt" }}" width="{{ .Get "width" | default 1000 }}" height="{{ .Get "height" | default 750 }}" loading="lazy" decoding="async">
+  <div class="tao-split-body">
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</div>

@@ -7,6 +7,26 @@
 - 커밋을 작성하거나 검토할 때는 [저장소의 git-commit-helper 스킬](.agents/skills/git-commit-helper/SKILL.md)을 따릅니다.
 - `assets/`에 보관된 이미지 원본은 바이트를 유지합니다. 최적화한 이미지가 필요하면 별도 파일을 만들어 사용합니다.
 
+## Hextra 확장 원칙
+
+Hextra 패키지가 업데이트되어도 저장소 수정 없이 적용되는 것을 목표로 합니다.
+
+- Hextra는 Hugo 모듈(`go.mod`)로 가져오며 버전을 고정합니다. 모듈 캐시와 `_vendor`를 포함해 Hextra 파일을 직접 수정하지 않습니다.
+- 커스터마이징은 아래 순서로 가장 위에서 해결되는 방법을 씁니다.
+  1. 설정: `hugo.toml`의 `params`, `menus`, `languages`, `markup`.
+  2. Hextra가 공식으로 여는 확장 지점: `assets/css/custom.css`, `layouts/_partials/custom/*.html`(`head-end`, `footer`, `navbar-title` 등).
+  3. 새 요소: `layouts/_shortcodes/`에 직접 만든 shortcode. Hextra가 나중에 같은 이름을 추가해도 겹치지 않도록 이름은 `tao-` 접두사를 씁니다.
+  4. 기존 Hextra 컴포넌트의 오버라이드: 위 방법으로 불가능할 때만 사용합니다.
+- 오버라이드는 Hextra와 같은 경로에 별도 파일로 두고, 한 파일에 한 가지 목적만 담습니다. 파일 맨 위 주석에 원본 경로, 오버라이드하는 이유, 확인한 Hextra 버전을 적습니다. Hextra를 올릴 때 원본과 비교해 반영합니다.
+- 직접 만든 CSS 클래스는 `tao-` 접두사를 씁니다. 스타일은 `custom.css`에, 동작은 `custom/head-end.html`에 둡니다.
+- Hextra 내부 클래스(`hextra-*`, `hx:*`)에 기대는 선택자는 최소로 쓰고, 쓴 곳의 파일 맨 위 주석에 목록으로 남깁니다. 업데이트 후 이 목록을 먼저 확인합니다.
+- 글꼴은 영문 제목과 카드 제목에 Fraunces, 영문 본문과 한글 전체에 Pretendard Variable을 씁니다. 제목은 한국어 페이지에서도 Fraunces를 먼저 지정하고, 한글 글리프는 Pretendard가 받습니다. 글꼴 로드는 `custom/head-end.html`, 지정은 `custom.css`의 `--tao-font-display`, `--tao-font-text`에 둡니다.
+- Hextra 기능이 있는지, 어떻게 쓰는지는 기억으로 단정하지 않습니다. [hextra-docs 스킬](.agents/skills/hextra-docs/SKILL.md)로 공식 문서를 찾고, 고정한 버전의 모듈 소스에서 `layouts/` 전체를 검색해 확인합니다. 스킬 버전은 Hextra 릴리스(예: v0.13.0)를 따르며, 새로 확인한 사실은 해당 버전 아래에 남깁니다.
+- 스킬이 보관한 공식 `llms.txt`는 수정하지 않고, 갱신할 때 `references/SOURCE.md`의 날짜, 기준 커밋, 해시를 함께 바꿉니다.
+- 메뉴 이름은 언어별로 메뉴를 따로 만들지 않고 `identifier`와 `i18n` 키로 번역합니다. 키는 Hextra 자체 키와 겹치지 않게 `tao-` 접두사를 씁니다.
+- 마크다운에서 원시 HTML을 켜지 않습니다. HTML이 필요한 요소는 shortcode로 만듭니다.
+- Hextra 업데이트 절차: `hugo mod get -u github.com/imfing/hextra`로 올린 뒤 오버라이드 파일과 내부 클래스 목록을 확인하고, 영문과 한글 페이지를 모두 열어 비교합니다.
+
 ## 브랜치와 워크트리
 
 - 장기 유지 브랜치와 GitHub의 기본 브랜치는 `main`입니다.
