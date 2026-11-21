@@ -10,11 +10,11 @@ export function validateCommitMessage(message) {
   const match = subjectPattern.exec(subject);
 
   if (!match || /^\p{Extended_Pictographic}/u.test(match[1])) {
-    return { valid: false, reason: '제목을 Gitmoji 없이 type(domain): 한글 제목 형식으로 작성하세요.' };
+    return { valid: false, reason: 'Use type(domain): Korean subject without a Gitmoji.' };
   }
 
   if (!/\p{Script=Hangul}/u.test(match[1])) {
-    return { valid: false, reason: '제목에 한글을 사용하세요.' };
+    return { valid: false, reason: 'Use Korean in the subject.' };
   }
 
   return { valid: true };
@@ -24,7 +24,7 @@ function main() {
   const messagePath = process.argv[2];
 
   if (!messagePath) {
-    process.stderr.write('사용법: validate-commit-message.mjs <메시지-파일>\n');
+    process.stderr.write('Usage: validate-commit-message.mjs <message-file>\n');
     process.exitCode = 2;
     return;
   }

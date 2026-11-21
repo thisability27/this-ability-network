@@ -1,7 +1,7 @@
-# 상단 메뉴 이름입니다. 키는 hugo.toml의 메뉴 identifier와 같습니다.
 tao-network: 네트워크 소개
 tao-programs: 프로그램
 tao-orchestra: This Ability Orchestra
 tao-concerts: 연주회
 tao-event-2027: 2027 국제 행사
 tao-contact: 문의 및 후원
+tao-footer-copyright: © This Ability Network · This Ability Orchestra · 미국 캘리포니아주 로스앤젤레스

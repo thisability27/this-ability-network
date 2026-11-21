@@ -1,25 +1,6 @@
-{{- /*
-Hextra의 공식 확장 지점(custom/head-end.html)입니다. Hextra 파일은 수정하지 않습니다.
-기존 사이트의 언어 및 테마 전환 동작을 이어받는 설정입니다.
-- 테마: 기본은 라이트이고 시스템 설정은 따르지 않습니다. 방문자가 고른 값은 원본의 tao-theme 쿠키(1년)에
-  기록하고 Hextra의 color-theme과 맞춥니다. "시스템" 옵션은 custom.css에서 숨깁니다.
-- 언어: 기본은 영어입니다. 언어를 바꿀 때 tao-lang에 저장하고(루트 주소가 이 값을 읽어 이동),
-  현재 해시(#섹션)를 유지한 채 이동합니다.
-
-Hextra 내부에 기대는 부분(Hextra v0.13.0 확인). 업데이트 후 먼저 확인합니다.
-  - localStorage 키 color-theme의 값(light, dark, system)과 html의 light, dark 클래스
-  - .hextra-theme-toggle-options button  테마 선택 버튼
-  - .hextra-language-options a           언어 선택 링크
-*/ -}}
 {{ range .AllTranslations }}
 <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
 {{ end }}
-{{- /*
-웹폰트: 영문 제목과 카드 제목은 Fraunces, 영문 본문과 한글 전체는 Pretendard Variable입니다.
-- Fraunces는 Google Fonts에서 광학 크기(opsz)와 굵기(wght) 축만 불러옵니다. SOFT와 WONK은 기본값 0을 씁니다.
-- Pretendard Variable은 다이내믹 서브셋이라 쓰인 한글 글리프만 내려받습니다. 버전은 고정합니다.
-글꼴 지정은 custom.css의 --tao-font-display, --tao-font-text에 있습니다.
-*/ -}}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap">
@@ -35,15 +16,12 @@ Hextra 내부에 기대는 부분(Hextra v0.13.0 확인). 업데이트 후 먼�
   try { cookieTheme = valid((document.cookie.match(/(?:^|;\s*)tao-theme=([a-z]+)(?:;|$)/) || [])[1]); } catch (e) {}
   try { storedTheme = valid(localStorage.getItem('color-theme')); } catch (e) {}
 
-  // 기본은 라이트입니다. 시스템 설정은 따르지 않으므로 저장된 값이 system 등 그 밖의 값이어도 라이트로 정리합니다.
-  // 첫 화면이 그려지기 전에 적용합니다.
   var theme = cookieTheme || storedTheme || 'light';
   try { localStorage.setItem('color-theme', theme); } catch (e) {}
   root.classList.remove('light', 'dark');
   root.classList.add(theme);
   root.style.colorScheme = theme;
 
-  // 방문자가 고른 테마를 브라우저에 1년 동안 기록합니다.
   function saveThemeCookie() {
     var chosen = null;
     try { chosen = valid(localStorage.getItem('color-theme')); } catch (e) {}
@@ -55,7 +33,7 @@ Hextra 내부에 기대는 부분(Hextra v0.13.0 확인). 업데이트 후 먼�
   document.addEventListener('click', function (event) {
     var themeOption = event.target.closest('.hextra-theme-toggle-options button');
     if (themeOption) {
-      // Hextra가 localStorage를 갱신한 뒤에 읽도록 한 틱 미룹니다.
+      {{- /* Wait for Hextra to update localStorage. */}}
       setTimeout(saveThemeCookie, 0);
       return;
     }

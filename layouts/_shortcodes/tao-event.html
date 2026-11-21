@@ -1,4 +1,3 @@
-{{- /* 직접 만든 shortcode입니다(Hextra 파일 아님). 원본의 2027 국제 행사 강조 블록이며 {{< tao-event >}} 형태로 호출합니다. 안쪽에 다른 shortcode는 넣을 수 없습니다. */ -}}
 <div class="tao-event not-prose">
   {{ .Inner | .Page.RenderString (dict "display" "block") }}
 </div>
