@@ -72,11 +72,18 @@ main h3,
   font-weight: 600;
 }
 
-.hextra-nav-container nav > a:first-child span {
+.hextra-nav-container nav > a:first-child { min-width: 0; }
+.hextra-nav-container nav > a:first-child > img { flex-shrink: 0; }
+
+.hextra-nav-container nav > a:first-child > span {
   font-family: var(--tao-font-display);
+  font-size: 17pt;
   font-variation-settings: "SOFT" 0, "WONK" 0;
   font-weight: 600;
   letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .section-title {
