@@ -252,8 +252,8 @@ a { text-underline-offset: 0.2em; }
 .tao-footer { padding: 1.5rem 0; font-size: 0.95rem; color: var(--tao-muted); }
 
 @media (max-width: 760px) {
-  .tao-about { grid-template-columns: 1fr; }
-  .tao-about > img { width: min(45%, 10rem); justify-self: end; }
+  .tao-about { grid-template-columns: 1fr; gap: 1.25rem; }
+  .tao-about > img { width: min(45%, 140px); justify-self: center; }
   .tao-panel-body { display: contents; }
   .tao-panel-body > blockquote { grid-column: 1 / -1; margin-top: 0; }
   .tao-split { grid-template-columns: 1fr; gap: 1.5rem; }
