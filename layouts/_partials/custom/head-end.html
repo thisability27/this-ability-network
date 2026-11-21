@@ -6,8 +6,62 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap">
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script>
+{{- if .IsHome }}
+(function () {
+  var hash = location.hash;
+  if (!hash || performance.getEntriesByType('navigation')[0]?.type === 'back_forward') return;
+  var anchorId;
+  try { anchorId = decodeURIComponent(hash.slice(1)); } catch (e) { return; }
+
+  var root = document.documentElement;
+  var previousVisibility = root.style.visibility;
+  root.style.visibility = 'hidden';
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var anchor = document.getElementById(anchorId);
+    if (!anchor) {
+      root.style.visibility = previousVisibility;
+      return;
+    }
+    var fontTimeout;
+    var fontDeadline = new Promise(function (resolve) {
+      fontTimeout = setTimeout(resolve, 350);
+    });
+    Promise.race([document.fonts?.ready, fontDeadline]).finally(function () {
+      clearTimeout(fontTimeout);
+      try {
+        if (location.hash === hash) anchor.scrollIntoView({ behavior: 'instant' });
+      } finally {
+        root.style.visibility = previousVisibility;
+      }
+    });
+  }, { once: true });
+})();
+
+{{- /* Hextra v0.13 requires fragment-only links on mobile and leaves desktop dropdowns open after same-page navigation. */}}
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.hextra-sidebar-container a[href], .hextra-nav-menu-items a[href]').forEach(function (link) {
+    if (link.origin !== location.origin || link.pathname !== location.pathname || !link.hash) return;
+    var dropdown = link.closest('.hextra-nav-menu-items');
+    if (!dropdown) {
+      link.setAttribute('href', link.hash);
+      return;
+    }
+    link.addEventListener('click', function (event) {
+      var toggle = dropdown.previousElementSibling;
+      if (toggle?.getAttribute('aria-expanded') !== 'true') return;
+      toggle.click();
+      if (event.detail === 0) toggle.focus({ preventScroll: true });
+    });
+  });
+});
+{{- end }}
 (function () {
   var root = document.documentElement;
+
+  window.addEventListener('pagehide', function () {
+    root.classList.remove('tao-smooth-scroll');
+  });
 
   function valid(theme) { return theme === 'light' || theme === 'dark' ? theme : null; }
 
@@ -37,11 +91,29 @@
       setTimeout(saveThemeCookie, 0);
       return;
     }
-    var languageLink = event.target.closest('.hextra-language-options a[href]');
-    if (languageLink) {
-      var target = (languageLink.pathname.match(/^\/(en|ko)(\/|$)/) || [])[1];
+    var link = event.target.closest('a[href]');
+    if (!link) return;
+    if (link.closest('.hextra-language-options')) {
+      var target = (link.pathname.match(/^\/(en|ko)(\/|$)/) || [])[1];
       if (target) { try { localStorage.setItem('tao-lang', target); } catch (e) {} }
-      if (location.hash && !languageLink.hash) languageLink.hash = location.hash;
+      if (location.hash && !link.hash) link.hash = location.hash;
+      return;
+    }
+    if (!event.defaultPrevented && event.button === 0 && !event.metaKey && !event.ctrlKey &&
+        !event.shiftKey && !event.altKey && (!link.target || link.target === '_self') &&
+        link.origin === location.origin && link.pathname === location.pathname &&
+        link.search === location.search) {
+      if (link.hash) root.classList.add('tao-smooth-scroll');
+      {{- if .IsHome }}
+      if (!link.hash && link.matches('.hextra-nav-container nav > a:first-of-type')) {
+        event.preventDefault();
+        if (location.hash) history.pushState(null, '', link.href);
+        if (window.scrollY > 0) {
+          root.classList.add('tao-smooth-scroll');
+          window.scrollTo({ top: 0 });
+        }
+      }
+      {{- end }}
     }
   });
 })();

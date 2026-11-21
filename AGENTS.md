@@ -24,7 +24,7 @@ Hextra 패키지가 업데이트되어도 저장소 수정 없이 적용되는 �
 - 글꼴은 영문 제목과 카드 제목에 Fraunces, 영문 본문과 한글 전체에 Pretendard Variable을 씁니다. 제목은 한국어 페이지에서도 Fraunces를 먼저 지정하고, 한글 글리프는 Pretendard가 받습니다. 글꼴 로드는 `custom/head-end.html`, 지정은 `custom.css`의 `--tao-font-display`, `--tao-font-text`에 둡니다.
 - Hextra 기능이 있는지, 어떻게 쓰는지는 기억으로 단정하지 않습니다. [hextra-docs 스킬](.agents/skills/hextra-docs/SKILL.md)로 공식 문서를 찾고, 고정한 버전의 모듈 소스에서 `layouts/` 전체를 검색해 확인합니다. 스킬 버전은 Hextra 릴리스(예: v0.13.0)를 따르며, 새로 확인한 사실은 해당 버전 아래에 남깁니다.
 - 스킬이 보관한 공식 `llms.txt`는 수정하지 않고, 갱신할 때 `references/SOURCE.md`의 날짜, 기준 커밋, 해시를 함께 바꿉니다.
-- 메뉴 이름은 언어별로 메뉴를 따로 만들지 않고 `identifier`와 `i18n` 키로 번역합니다. 키는 Hextra 자체 키와 겹치지 않게 `tao-` 접두사를 씁니다.
+- 메뉴 이름은 공통 `identifier`와 `i18n` 키로 번역합니다. 목적지의 언어 식별자가 달라지면 Hugo의 언어별 메뉴에 같은 식별자와 구조를 사용하고 URL을 지정합니다. 키는 Hextra 자체 키와 겹치지 않게 `tao-` 접두사를 씁니다.
 - 마크다운에서 원시 HTML을 켜지 않습니다. HTML이 필요한 요소는 shortcode로 만듭니다.
 - Hextra 업데이트 절차: `hugo mod get -u github.com/imfing/hextra`로 올린 뒤 오버라이드 파일과 내부 클래스 목록을 확인하고, 영문과 한글 페이지를 모두 열어 비교합니다.
 

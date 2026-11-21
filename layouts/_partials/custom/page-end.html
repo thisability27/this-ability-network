@@ -1,4 +1,8 @@
 {{- /* Hero and crop metadata must be set before Hextra initializes PhotoSwipe 5.x. */ -}}
+{{- if .IsHome -}}
+  {{- .Store.Set "hasGallery" true -}}
+{{- end -}}
+{{- if .Store.Get "hasGallery" -}}
 <script>
 (function () {
   document.querySelectorAll('.hextra-gallery--grid .hextra-gallery__link').forEach(function (link) {
@@ -79,3 +83,4 @@
   }, true);
 })();
 </script>
+{{- end -}}

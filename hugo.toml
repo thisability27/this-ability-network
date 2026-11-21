@@ -37,54 +37,105 @@ title = true
 
 [params.navbar.logo]
 path = 'assets/image/network-logo-mark.png'
+width = 35
+height = 35
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-network'
 name = 'The Network'
-url = '#network'
+url = '/en/#network'
 weight = 1
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-programs'
 name = 'Programs'
 weight = 2
 
-# Use fragment URLs to keep the mobile submenu on the current page.
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-orchestra'
 name = 'This Ability Orchestra'
-url = '#orchestra'
+url = '/en/#orchestra'
 parent = 'tao-programs'
 weight = 1
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-concerts'
 name = 'Concerts'
-url = '#concerts'
+url = '/en/#concerts'
 parent = 'tao-programs'
 weight = 2
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-event-2027'
 name = '2027 International Event'
-url = '#2027'
+url = '/en/#2027'
 parent = 'tao-programs'
 weight = 3
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'tao-contact'
 name = 'Contact & Support'
-url = '#contact'
+url = '/en/#contact'
 weight = 5
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'theme'
 weight = 6
-[menus.main.params]
+[languages.en.menus.main.params]
 type = 'theme-toggle'
 
-[[menus.main]]
+[[languages.en.menus.main]]
 identifier = 'language'
 weight = 7
-[menus.main.params]
+[languages.en.menus.main.params]
+type = 'language-switch'
+
+[[languages.ko.menus.main]]
+identifier = 'tao-network'
+name = 'The Network'
+url = '/ko/#network'
+weight = 1
+
+[[languages.ko.menus.main]]
+identifier = 'tao-programs'
+name = 'Programs'
+weight = 2
+
+[[languages.ko.menus.main]]
+identifier = 'tao-orchestra'
+name = 'This Ability Orchestra'
+url = '/ko/#orchestra'
+parent = 'tao-programs'
+weight = 1
+
+[[languages.ko.menus.main]]
+identifier = 'tao-concerts'
+name = 'Concerts'
+url = '/ko/#concerts'
+parent = 'tao-programs'
+weight = 2
+
+[[languages.ko.menus.main]]
+identifier = 'tao-event-2027'
+name = '2027 International Event'
+url = '/ko/#2027'
+parent = 'tao-programs'
+weight = 3
+
+[[languages.ko.menus.main]]
+identifier = 'tao-contact'
+name = 'Contact & Support'
+url = '/ko/#contact'
+weight = 5
+
+[[languages.ko.menus.main]]
+identifier = 'theme'
+weight = 6
+[languages.ko.menus.main.params]
+type = 'theme-toggle'
+
+[[languages.ko.menus.main]]
+identifier = 'language'
+weight = 7
+[languages.ko.menus.main.params]
 type = 'language-switch'
