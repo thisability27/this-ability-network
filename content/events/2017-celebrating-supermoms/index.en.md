@@ -9,6 +9,8 @@ toc: false
 
 **May 12, 2017, at 7 p.m. · Calvary Faith Church**
 
+3300 Wilshire Blvd, Los Angeles, CA 90010
+
 The concert supported Children’s Hospital Los Angeles and its Mark Taper–Johnny Mercer Artists Program.
 
 ## Concert Poster

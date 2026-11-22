@@ -16,6 +16,7 @@ sidebar:
 ## Past Events {#past-performances}
 
 [2026](#2026) · [2024](#2024) · [2018](#2018) · [2017](#2017)
+{.tao-event-years}
 
 ### 2026 {#2026}
 

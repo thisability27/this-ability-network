@@ -9,6 +9,8 @@ toc: false
 
 **2018년 5월 11일 오후 7시 · YoungNak Church of LA**
 
+1721 N Broadway Ave, Los Angeles, CA 90031
+
 어머니날을 맞아 로스앤젤레스 어린이병원(Children’s Hospital Los Angeles)의 Mark Taper–Johnny Mercer Artists Program을 돕는 후원 콘서트를 열었습니다.
 
 ## 공연 포스터

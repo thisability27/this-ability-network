@@ -20,7 +20,7 @@ This Ability Network is a Los Angeles nonprofit. Through This Ability Orchestra,
 {{< tao-staff >}}
 
 {{< tao-about >}}
-## About This Ability Network {#network .section-title}
+## About Our Network {#network .section-title}
 
 This Ability Network is a 501(c)(3) nonprofit in Los Angeles. We believe that the stage, the rehearsal room, and the community all work better when everyone has a place in them.
 

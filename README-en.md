@@ -43,3 +43,7 @@ Use Changesets to record changes in Korean. See [the changelog](CHANGELOG.md) fo
 2. For each change, run `npm run changeset` and select the appropriate `patch`, `minor`, or `major` bump.
 3. Run `npm run changeset:status` to check the planned version.
 4. At release time, run `npm run release:version` to update the version, lockfile, and `CHANGELOG.md`. Review the generated changes, then create the release commit and version tag.
+
+## Accessibility
+
+See the [accessibility testing guide](docs/accessibility.md) for local checks and the manual screen reader checklist.

@@ -83,4 +83,41 @@
   }, true);
 })();
 </script>
+<script>
+(function () {
+  var name = {{ T "tao-photo-viewer" }};
+  var labels = {
+    close: {{ T "tao-photo-close" }},
+    zoom: {{ T "tao-photo-zoom" }},
+    "arrow--prev": {{ T "tao-photo-previous" }},
+    "arrow--next": {{ T "tao-photo-next" }}
+  };
+  new MutationObserver(function (changes) {
+    changes.forEach(function (change) {
+      change.addedNodes.forEach(function (dialog) {
+        if (!dialog.matches?.('.pswp[role="dialog"]')) return;
+        dialog.setAttribute('aria-label', name);
+        dialog.setAttribute('aria-modal', 'true');
+        Object.entries(labels).forEach(function (entry) {
+          var button = dialog.querySelector('.pswp__button--' + entry[0]);
+          if (!button) return;
+          button.setAttribute('aria-label', entry[1]);
+          button.title = entry[1];
+        });
+        dialog.addEventListener('keydown', function (event) {
+          if (event.key !== 'Tab') return;
+          var buttons = Array.from(dialog.querySelectorAll('button:not(:disabled)')).filter(function (button) {
+            return button.getClientRects().length && getComputedStyle(button).visibility === 'visible';
+          });
+          var current = buttons.indexOf(document.activeElement);
+          if (!buttons.length || current === -1 || current === (event.shiftKey ? 0 : buttons.length - 1)) {
+            event.preventDefault();
+            (buttons[event.shiftKey ? buttons.length - 1 : 0] || dialog).focus();
+          }
+        });
+      });
+    });
+  }).observe(document.body, { childList: true });
+})();
+</script>
 {{- end -}}

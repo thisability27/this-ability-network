@@ -2,3 +2,9 @@ node_modules/
 public/
 resources/_gen/
 .hugo_build.lock
+test-results/
+playwright-report/
+.agents/skills/accessibility-audit/
+.agents/skills/accessibility-scan/
+.agents/skills/accessibility-inspect/
+.agents/skills/shared/

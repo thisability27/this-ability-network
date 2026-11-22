@@ -258,6 +258,13 @@ a { text-underline-offset: 0.2em; }
 
 .tao-footer { padding: 1.5rem 0; font-size: 0.95rem; color: var(--tao-muted); }
 
+.hextra-card-subtitle { color: var(--tao-muted); }
+.tao-event-years a { color: var(--tao-navy); }
+
+@media (max-width: 767px) {
+  .hextra-sidebar-container[aria-hidden="true"] { display: none; }
+}
+
 @media (max-width: 760px) {
   .tao-about { grid-template-columns: 1fr; gap: 1.25rem; }
   .tao-about > img { width: min(45%, 140px); justify-self: center; }

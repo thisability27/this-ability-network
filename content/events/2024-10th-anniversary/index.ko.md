@@ -9,6 +9,8 @@ toc: false
 
 **2024년 10월 19일 오후 5시**
 
+1721 N Broadway Ave
+
 소프라노 Hae Eun Jeon, 바리톤 Young Kwon, Vocielesti Children’s Choir가 함께했습니다.
 
 ## 공연 포스터

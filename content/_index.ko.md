@@ -20,7 +20,7 @@ This Ability Network는 로스앤젤레스의 비영리단체입니다. This Abi
 {{< tao-staff >}}
 
 {{< tao-about >}}
-## This Ability Network 소개 {#network .section-title}
+## 네트워크 소개 {#network .section-title}
 
 This Ability Network는 로스앤젤레스의 501(c)(3) 비영리단체입니다. 무대도, 연습실도, 지역사회도 모두가 자기 자리를 가질 때 더 좋아진다고 믿습니다.
 

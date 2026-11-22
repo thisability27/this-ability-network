@@ -9,6 +9,8 @@ toc: false
 
 **2017년 5월 12일 오후 7시 · Calvary Faith Church**
 
+3300 Wilshire Blvd, Los Angeles, CA 90010
+
 이 공연은 로스앤젤레스 어린이병원(Children’s Hospital Los Angeles)과 병원의 Mark Taper–Johnny Mercer Artists Program을 후원했습니다.
 
 ## 공연 포스터

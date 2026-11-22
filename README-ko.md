@@ -43,3 +43,7 @@ Changesets를 사용해 변경 내용을 한글로 기록합니다. 버전별 �
 2. 변경이 있을 때 `npm run changeset`을 실행하고 변경에 맞는 `patch`, `minor`, `major`를 선택합니다.
 3. `npm run changeset:status`로 예정된 버전을 확인합니다.
 4. 릴리스할 때만 `npm run release:version`을 실행해 버전, 잠금 파일, `CHANGELOG.md`를 갱신합니다. 생성된 변경을 검토한 뒤 릴리스 커밋과 버전 태그를 만듭니다.
+
+## 접근성
+
+로컬 검사 명령과 화면 낭독 검증 항목은 [접근성 검증 안내](docs/accessibility.md)에서 확인할 수 있습니다.
