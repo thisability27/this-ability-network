@@ -98,6 +98,87 @@ for (const language of ['en', 'ko']) {
     await expect(page.locator('.hextra-nav-container a[href$="#network"]')).toBeVisible();
   });
 
+  test(`${language} focus ring contrast`, async ({ page }) => {
+    for (const color of ['light', 'dark']) {
+      await page.context().addCookies([{ url: 'http://127.0.0.1:8776', name: 'tao-theme', value: color }]);
+      await page.goto(`/${language}/events/`);
+      await page.keyboard.press('Tab');
+      const ratios = [];
+      for (let index = 0; index < 40; index += 1) {
+        ratios.push(await page.evaluate(() => {
+          const element = document.activeElement;
+          const context = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+          const parse = (value) => {
+            context.clearRect(0, 0, 1, 1);
+            context.fillStyle = '#000';
+            context.fillStyle = value;
+            context.fillRect(0, 0, 1, 1);
+            const [r, g, b, a] = context.getImageData(0, 0, 1, 1).data;
+            return [r, g, b, a / 255];
+          };
+          const luminance = ([r, g, b]) => {
+            const [R, G, B] = [r, g, b].map((v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; });
+            return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+          };
+          let background = [255, 255, 255];
+          const chain = [];
+          for (let node = element.parentElement; node; node = node.parentElement) chain.unshift(node);
+          for (const node of chain) {
+            const [r, g, b, a = 1] = parse(getComputedStyle(node).backgroundColor);
+            if (a > 0) background = background.map((base, i) => Math.round(base * (1 - a) + [r, g, b][i] * a));
+          }
+          const style = getComputedStyle(element);
+          const ring = parse(style.outlineColor);
+          const [a, b] = [luminance(ring), luminance(background)].sort((x, y) => y - x);
+          return {
+            tag: element.tagName, visible: element.matches(':focus-visible'),
+            ratio: (a + 0.05) / (b + 0.05), width: parseFloat(style.outlineWidth),
+            style: style.outlineStyle, shadow: style.boxShadow,
+          };
+        }));
+        await page.keyboard.press('Tab');
+      }
+      for (const item of ratios.filter((entry) => entry.visible)) {
+        expect(item.style).toBe('solid');
+        expect(item.width).toBeGreaterThanOrEqual(2);
+        expect(item.ratio, `${color} ${item.tag}`).toBeGreaterThanOrEqual(3);
+      }
+    }
+  });
+
+  test(`${language} desktop dropdown closes when focus leaves`, async ({ page }) => {
+    await page.setViewportSize({ width: 1051, height: 1000 });
+    await page.goto(`/${language}/`);
+    const toggle = page.locator('.hextra-nav-menu-toggle').first();
+    await toggle.focus();
+    await toggle.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    for (let index = 0; index < 20; index += 1) {
+      await page.keyboard.press('Tab');
+      if (await toggle.evaluate((element) => !element.parentElement.contains(document.activeElement))) break;
+    }
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  test(`${language} mobile menu traps focus behind the sidebar`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 1000 });
+    await page.goto(`/${language}/`);
+    const toggle = page.locator('.hextra-hamburger-menu');
+    const regions = page.locator('main, .hextra-footer');
+    await expect(page.locator('main[inert], .hextra-footer[inert]')).toHaveCount(0);
+    await toggle.press('Enter');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('main[inert]')).toHaveCount(1);
+    await expect(page.locator('.hextra-footer[inert]')).toHaveCount(1);
+    for (let index = 0; index < 40; index += 1) {
+      await page.keyboard.press('Tab');
+      expect(await page.evaluate(() => !!document.activeElement.closest('main, .hextra-footer'))).toBe(false);
+    }
+    await page.setViewportSize({ width: 1051, height: 1000 });
+    await expect(regions.first()).not.toHaveAttribute('inert', /.*/);
+    await expect(page.locator('main[inert], .hextra-footer[inert]')).toHaveCount(0);
+  });
+
   test(`${language} footer names follow visible language and theme`, async ({ page }) => {
     await page.goto(`/${language}/`);
     const footer = page.locator('.hextra-footer');

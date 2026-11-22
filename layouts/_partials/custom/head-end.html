@@ -26,6 +26,25 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   });
+
+  document.querySelectorAll('.hextra-nav-menu-toggle').forEach(function (toggle) {
+    var group = toggle.parentElement;
+    group.addEventListener('focusout', function (event) {
+      if (event.relatedTarget && group.contains(event.relatedTarget)) return;
+      if (toggle.getAttribute('aria-expanded') === 'true') toggle.click();
+    });
+  });
+
+  var hamburger = document.querySelector('.hextra-hamburger-menu');
+  if (hamburger) {
+    var syncInert = function () {
+      var open = hamburger.getAttribute('aria-expanded') === 'true' && getComputedStyle(hamburger).display !== 'none';
+      document.querySelectorAll('main, .hextra-footer').forEach(function (region) { region.inert = open; });
+    };
+    new MutationObserver(syncInert).observe(hamburger, { attributes: true, attributeFilter: ['aria-expanded'] });
+    window.addEventListener('resize', syncInert);
+    syncInert();
+  }
 });
 
 {{- if .IsHome }}

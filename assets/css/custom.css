@@ -35,6 +35,12 @@
   --primary-lightness: 60%;
 }
 
+:focus-visible {
+  outline: 2px solid var(--tao-navy) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
 body {
   background: var(--tao-bg);
   color: var(--tao-ink);
