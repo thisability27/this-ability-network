@@ -1,0 +1,571 @@
+{
+  "wcagVersion": "2.2",
+  "axeCore": "4.14.1",
+  "note": "WCAG 2.2 A와 AA 성공 기준의 처리 방식입니다. 4.1.1 Parsing은 2.2에서 삭제되어 제외합니다. axe는 axe 규칙 id, script는 scripts/wcag-rules.mjs의 규칙 id, manual은 docs/accessibility.md의 수동 점검, na는 해당 없음 근거(script 단언이 가정을 지킴)입니다.",
+  "criteria": [
+    {
+      "id": "1.1.1",
+      "level": "A",
+      "name": "Non-text Content",
+      "axe": [
+        "aria-meter-name",
+        "aria-progressbar-name",
+        "image-alt",
+        "input-image-alt",
+        "object-alt",
+        "role-img-alt",
+        "svg-img-alt"
+      ],
+      "script": [],
+      "manual": "대체 텍스트가 사진과 포스터의 내용을 정확히 설명하는지 읽어서 확인합니다."
+    },
+    {
+      "id": "1.2.1",
+      "level": "A",
+      "name": "Audio-only and Video-only (Prerecorded)",
+      "axe": [
+        "audio-caption"
+      ],
+      "script": [
+        "no-media"
+      ],
+      "na": "음성과 영상 콘텐츠가 없는 정적 사이트입니다."
+    },
+    {
+      "id": "1.2.2",
+      "level": "A",
+      "name": "Captions (Prerecorded)",
+      "axe": [
+        "video-caption"
+      ],
+      "script": [
+        "no-media"
+      ],
+      "na": "음성과 영상 콘텐츠가 없는 정적 사이트입니다."
+    },
+    {
+      "id": "1.2.3",
+      "level": "A",
+      "name": "Audio Description or Media Alternative (Prerecorded)",
+      "axe": [],
+      "script": [
+        "no-media"
+      ],
+      "na": "음성과 영상 콘텐츠가 없는 정적 사이트입니다."
+    },
+    {
+      "id": "1.3.1",
+      "level": "A",
+      "name": "Info and Relationships",
+      "axe": [
+        "aria-hidden-body",
+        "aria-required-children",
+        "aria-required-parent",
+        "definition-list",
+        "dlitem",
+        "list",
+        "listitem",
+        "p-as-heading",
+        "table-fake-caption",
+        "td-has-header",
+        "td-headers-attr",
+        "th-has-data-cells"
+      ],
+      "script": [],
+      "manual": "제목 계층, 목록, 랜드마크가 시각적 구조와 같은지 스크린리더로 확인합니다."
+    },
+    {
+      "id": "1.3.2",
+      "level": "A",
+      "name": "Meaningful Sequence",
+      "axe": [],
+      "script": [],
+      "manual": "CSS를 끈 상태와 스크린리더에서 읽기 순서가 의미 순서와 같은지 확인합니다."
+    },
+    {
+      "id": "1.3.3",
+      "level": "A",
+      "name": "Sensory Characteristics",
+      "axe": [],
+      "script": [],
+      "manual": "안내 문구가 색, 위치, 모양만으로 대상을 가리키지 않는지 확인합니다."
+    },
+    {
+      "id": "1.4.1",
+      "level": "A",
+      "name": "Use of Color",
+      "axe": [
+        "link-in-text-block"
+      ],
+      "script": [],
+      "manual": "링크와 상태가 색 외의 단서로도 구분되는지 확인합니다."
+    },
+    {
+      "id": "1.4.2",
+      "level": "A",
+      "name": "Audio Control",
+      "axe": [
+        "no-autoplay-audio"
+      ],
+      "script": [
+        "no-media"
+      ],
+      "na": "오디오를 재생하지 않습니다."
+    },
+    {
+      "id": "2.1.1",
+      "level": "A",
+      "name": "Keyboard",
+      "axe": [
+        "frame-focusable-content",
+        "scrollable-region-focusable",
+        "server-side-image-map"
+      ],
+      "script": [],
+      "manual": "키보드 테스트(tests/accessibility.spec.mjs)가 다루지 않는 상호작용이 없는지 확인합니다."
+    },
+    {
+      "id": "2.1.2",
+      "level": "A",
+      "name": "No Keyboard Trap",
+      "axe": [],
+      "script": [],
+      "manual": "사진 확대 창과 메뉴에서 Tab과 Escape로 빠져나올 수 있는지 확인합니다. 자동 테스트가 일부를 다룹니다."
+    },
+    {
+      "id": "2.1.4",
+      "level": "A",
+      "name": "Character Key Shortcuts",
+      "axe": [],
+      "script": [],
+      "manual": "문자 키 단축키가 없는지 확인합니다. 사진 확대 창은 방향키와 Escape만 사용합니다."
+    },
+    {
+      "id": "2.2.1",
+      "level": "A",
+      "name": "Timing Adjustable",
+      "axe": [
+        "meta-refresh"
+      ],
+      "script": []
+    },
+    {
+      "id": "2.2.2",
+      "level": "A",
+      "name": "Pause, Stop, Hide",
+      "axe": [
+        "blink",
+        "marquee"
+      ],
+      "script": []
+    },
+    {
+      "id": "2.3.1",
+      "level": "A",
+      "name": "Three Flashes or Below Threshold",
+      "axe": [],
+      "script": [],
+      "manual": "1초에 3회를 넘는 깜빡임이 없는지 확인합니다. 확대 애니메이션은 감소된 동작 설정에서 생략됩니다."
+    },
+    {
+      "id": "2.4.1",
+      "level": "A",
+      "name": "Bypass Blocks",
+      "axe": [
+        "bypass"
+      ],
+      "script": []
+    },
+    {
+      "id": "2.4.2",
+      "level": "A",
+      "name": "Page Titled",
+      "axe": [
+        "document-title"
+      ],
+      "script": []
+    },
+    {
+      "id": "2.4.3",
+      "level": "A",
+      "name": "Focus Order",
+      "axe": [],
+      "script": [],
+      "manual": "모바일 메뉴, 드롭다운, 사진 확대 창에서 포커스 순서가 논리적인지 확인합니다."
+    },
+    {
+      "id": "2.4.4",
+      "level": "A",
+      "name": "Link Purpose (In Context)",
+      "axe": [
+        "area-alt",
+        "link-name"
+      ],
+      "script": [],
+      "manual": "링크 이름이 문맥에서 목적지를 드러내는지 확인합니다."
+    },
+    {
+      "id": "2.5.1",
+      "level": "A",
+      "name": "Pointer Gestures",
+      "axe": [],
+      "script": [],
+      "manual": "사진 확대 창의 스와이프와 핀치에 단일 포인터 대체 수단(버튼)이 있는지 확인합니다."
+    },
+    {
+      "id": "2.5.2",
+      "level": "A",
+      "name": "Pointer Cancellation",
+      "axe": [],
+      "script": [],
+      "manual": "클릭이 up 이벤트에서 실행되고 취소할 수 있는지 확인합니다."
+    },
+    {
+      "id": "2.5.3",
+      "level": "A",
+      "name": "Label in Name",
+      "axe": [
+        "label-content-name-mismatch"
+      ],
+      "script": []
+    },
+    {
+      "id": "2.5.4",
+      "level": "A",
+      "name": "Motion Actuation",
+      "axe": [],
+      "script": [],
+      "manual": "기기 움직임으로 동작하는 기능이 없는지 확인합니다."
+    },
+    {
+      "id": "3.1.1",
+      "level": "A",
+      "name": "Language of Page",
+      "axe": [
+        "html-has-lang",
+        "html-lang-valid",
+        "html-xml-lang-mismatch"
+      ],
+      "script": []
+    },
+    {
+      "id": "3.2.1",
+      "level": "A",
+      "name": "On Focus",
+      "axe": [],
+      "script": [],
+      "manual": "포커스만으로 맥락이 바뀌지 않는지 확인합니다."
+    },
+    {
+      "id": "3.2.2",
+      "level": "A",
+      "name": "On Input",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "입력 컨트롤이 없는 정적 사이트입니다."
+    },
+    {
+      "id": "3.2.6",
+      "level": "A",
+      "name": "Consistent Help",
+      "axe": [],
+      "script": [],
+      "manual": "도움 수단(연락처)이 여러 페이지에서 같은 위치에 있는지 확인합니다."
+    },
+    {
+      "id": "3.3.1",
+      "level": "A",
+      "name": "Error Identification",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "입력 컨트롤이 없는 정적 사이트입니다."
+    },
+    {
+      "id": "3.3.2",
+      "level": "A",
+      "name": "Labels or Instructions",
+      "axe": [
+        "form-field-multiple-labels"
+      ],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "입력 컨트롤이 없는 정적 사이트입니다."
+    },
+    {
+      "id": "3.3.7",
+      "level": "A",
+      "name": "Redundant Entry",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "입력 컨트롤과 다단계 절차가 없는 정적 사이트입니다."
+    },
+    {
+      "id": "4.1.2",
+      "level": "A",
+      "name": "Name, Role, Value",
+      "axe": [
+        "area-alt",
+        "aria-allowed-attr",
+        "aria-braille-equivalent",
+        "aria-command-name",
+        "aria-conditional-attr",
+        "aria-deprecated-role",
+        "aria-hidden-body",
+        "aria-hidden-focus",
+        "aria-input-field-name",
+        "aria-prohibited-attr",
+        "aria-required-attr",
+        "aria-roledescription",
+        "aria-roles",
+        "aria-tab-name",
+        "aria-toggle-field-name",
+        "aria-tooltip-name",
+        "aria-valid-attr-value",
+        "aria-valid-attr",
+        "button-name",
+        "duplicate-id-aria",
+        "frame-title-unique",
+        "frame-title",
+        "input-button-name",
+        "input-image-alt",
+        "label",
+        "link-name",
+        "nested-interactive",
+        "select-name",
+        "summary-name"
+      ],
+      "script": [],
+      "manual": "사용자 정의 위젯(드롭다운, 메뉴, 사진 확대 창)의 이름과 상태를 스크린리더로 확인합니다."
+    },
+    {
+      "id": "1.2.4",
+      "level": "AA",
+      "name": "Captions (Live)",
+      "axe": [],
+      "script": [
+        "no-media"
+      ],
+      "na": "실시간 음성과 영상 콘텐츠가 없습니다."
+    },
+    {
+      "id": "1.2.5",
+      "level": "AA",
+      "name": "Audio Description (Prerecorded)",
+      "axe": [],
+      "script": [
+        "no-media"
+      ],
+      "na": "음성과 영상 콘텐츠가 없는 정적 사이트입니다."
+    },
+    {
+      "id": "1.3.4",
+      "level": "AA",
+      "name": "Orientation",
+      "axe": [
+        "css-orientation-lock"
+      ],
+      "script": []
+    },
+    {
+      "id": "1.3.5",
+      "level": "AA",
+      "name": "Identify Input Purpose",
+      "axe": [
+        "autocomplete-valid"
+      ],
+      "script": [
+        "no-form-controls"
+      ]
+    },
+    {
+      "id": "1.4.3",
+      "level": "AA",
+      "name": "Contrast (Minimum)",
+      "axe": [
+        "color-contrast"
+      ],
+      "script": []
+    },
+    {
+      "id": "1.4.4",
+      "level": "AA",
+      "name": "Resize Text",
+      "axe": [
+        "meta-viewport"
+      ],
+      "script": [],
+      "manual": "브라우저 확대 200%에서 내용과 기능이 유지되는지 확인합니다."
+    },
+    {
+      "id": "1.4.5",
+      "level": "AA",
+      "name": "Images of Text",
+      "axe": [],
+      "script": [],
+      "manual": "행사 포스터가 이미지 속 글자인 경우 같은 내용이 본문 텍스트로도 제공되는지 확인합니다."
+    },
+    {
+      "id": "1.4.10",
+      "level": "AA",
+      "name": "Reflow",
+      "axe": [],
+      "script": [
+        "reflow-320"
+      ]
+    },
+    {
+      "id": "1.4.11",
+      "level": "AA",
+      "name": "Non-text Contrast",
+      "axe": [],
+      "script": [
+        "focus-ring-contrast"
+      ],
+      "manual": "아이콘, 버튼 테두리 등 포커스 외 UI 구성요소의 대비를 눈으로 확인합니다."
+    },
+    {
+      "id": "1.4.12",
+      "level": "AA",
+      "name": "Text Spacing",
+      "axe": [
+        "avoid-inline-spacing"
+      ],
+      "script": [
+        "text-spacing"
+      ]
+    },
+    {
+      "id": "1.4.13",
+      "level": "AA",
+      "name": "Content on Hover or Focus",
+      "axe": [],
+      "script": [],
+      "manual": "드롭다운과 툴팁 성격의 콘텐츠가 닫기 가능, 포인터 이동 가능, 유지됨을 만족하는지 확인합니다."
+    },
+    {
+      "id": "2.4.5",
+      "level": "AA",
+      "name": "Multiple Ways",
+      "axe": [],
+      "script": [],
+      "manual": "상단 메뉴, 푸터, 페이지 내 링크 등 여러 경로로 페이지에 닿을 수 있는지 확인합니다."
+    },
+    {
+      "id": "2.4.6",
+      "level": "AA",
+      "name": "Headings and Labels",
+      "axe": [],
+      "script": [],
+      "manual": "제목과 라벨이 주제와 목적을 설명하는지 확인합니다."
+    },
+    {
+      "id": "2.4.7",
+      "level": "AA",
+      "name": "Focus Visible",
+      "axe": [],
+      "script": [
+        "focus-ring-contrast"
+      ]
+    },
+    {
+      "id": "2.4.11",
+      "level": "AA",
+      "name": "Focus Not Obscured (Minimum)",
+      "axe": [],
+      "script": [
+        "focus-not-obscured"
+      ]
+    },
+    {
+      "id": "2.5.7",
+      "level": "AA",
+      "name": "Dragging Movements",
+      "axe": [],
+      "script": [
+        "no-drag-interaction"
+      ],
+      "na": "드래그로만 가능한 입력이 없습니다. 사진 확대 창의 끌어서 이동은 버튼으로 대체됩니다."
+    },
+    {
+      "id": "2.5.8",
+      "level": "AA",
+      "name": "Target Size (Minimum)",
+      "axe": [
+        "target-size"
+      ],
+      "script": [
+        "target-size-states"
+      ]
+    },
+    {
+      "id": "3.1.2",
+      "level": "AA",
+      "name": "Language of Parts",
+      "axe": [
+        "valid-lang"
+      ],
+      "script": []
+    },
+    {
+      "id": "3.2.3",
+      "level": "AA",
+      "name": "Consistent Navigation",
+      "axe": [],
+      "script": [],
+      "manual": "모든 페이지에서 내비게이션 순서가 같은지 확인합니다. 한·영 사이트는 같은 Hextra 템플릿을 공유합니다."
+    },
+    {
+      "id": "3.2.4",
+      "level": "AA",
+      "name": "Consistent Identification",
+      "axe": [],
+      "script": [],
+      "manual": "같은 기능의 컴포넌트가 모든 페이지에서 같은 이름을 갖는지 확인합니다."
+    },
+    {
+      "id": "3.3.3",
+      "level": "AA",
+      "name": "Error Suggestion",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "입력 컨트롤이 없는 정적 사이트입니다."
+    },
+    {
+      "id": "3.3.4",
+      "level": "AA",
+      "name": "Error Prevention (Legal, Financial, Data)",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "법률, 금융, 데이터 입력이 없는 정적 사이트입니다."
+    },
+    {
+      "id": "3.3.8",
+      "level": "AA",
+      "name": "Accessible Authentication (Minimum)",
+      "axe": [],
+      "script": [
+        "no-form-controls"
+      ],
+      "na": "로그인과 인증 절차가 없습니다."
+    },
+    {
+      "id": "4.1.3",
+      "level": "AA",
+      "name": "Status Messages",
+      "axe": [],
+      "script": [],
+      "manual": "동적으로 나타나는 상태 메시지가 보조기술에 전달되는지 확인합니다."
+    }
+  ]
+}

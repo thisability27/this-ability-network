@@ -1,0 +1,24 @@
+{{- /* Override Hugo layouts/alias.html to retain the saved language and fragment at the root. */ -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.Title }}</title>
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url={{ .Permalink }}">
+  <script>
+    (function () {
+      var target = {{ .Permalink }};
+      var saved = null;
+      try { saved = localStorage.getItem('tao-lang'); } catch (e) {}
+      if (saved === 'ko') target = target.replace(/\/en\/$/, '/ko/');
+      location.replace(target + location.search + location.hash);
+    })();
+  </script>
+</head>
+<body>
+  <p><a href="{{ .Permalink }}">{{ .Permalink }}</a></p>
+</body>
+</html>

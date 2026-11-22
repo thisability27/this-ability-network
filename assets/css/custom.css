@@ -1,0 +1,293 @@
+@media (prefers-reduced-motion: no-preference) {
+  html.tao-smooth-scroll { scroll-behavior: smooth; }
+}
+
+:root {
+  --tao-bg: #f7f5fc;
+  --tao-ink: #1c1b33;
+  --tao-muted: #55536b;
+  --tao-navy: #2b3190;
+  --tao-teal: #0a8aa8;
+  --tao-gold: #9a6f2a;
+  --tao-soft: #ebe8f7;
+  --tao-line: #dcd7ee;
+  --tao-font-text: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  --tao-font-display: "Fraunces", var(--tao-font-text);
+
+  --primary-hue: 236deg;
+  --primary-saturation: 54%;
+  --primary-lightness: 37%;
+}
+
+.dark {
+  --tao-bg: #14132a;
+  --tao-ink: #f1effb;
+  --tao-muted: #b9b6d4;
+  --tao-navy: #aab1ff;
+  --tao-teal: #4cc6e2;
+  --tao-gold: #e0b567;
+  --tao-soft: #26244a;
+  --tao-line: #37355f;
+
+  --primary-hue: 236deg;
+  --primary-saturation: 70%;
+  --primary-lightness: 60%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--tao-navy) !important;
+  outline-offset: 2px !important;
+  box-shadow: none !important;
+}
+
+.tao-event :focus-visible { outline-color: #fff !important; }
+
+/* Hextra heading permalinks render empty here, so hide them from sight and the tab order. */
+.subheading-anchor { display: none; }
+
+body {
+  background: var(--tao-bg);
+  color: var(--tao-ink);
+}
+
+.hextra-nav-container-blur { background: var(--tao-bg); }
+.hextra-footer { background: var(--tao-soft); }
+
+body {
+  font-family: var(--tao-font-text);
+  font-weight: 400;
+}
+:lang(ko) body,
+body:lang(ko) {
+  word-break: keep-all;
+}
+
+main h1,
+main h2,
+main h3,
+.section-title,
+.hextra-card-icon {
+  font-family: var(--tao-font-display);
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+}
+main h1,
+main h2,
+main h3,
+.section-title {
+  color: var(--tao-navy);
+  font-weight: 560;
+}
+main h3,
+.hextra-card-icon {
+  font-weight: 600;
+}
+
+.hextra-nav-container nav > a:first-child { min-width: 0; }
+.hextra-nav-container nav > a:first-child > img { flex-shrink: 0; }
+
+.hextra-nav-container nav > a:first-child > span {
+  font-family: var(--tao-font-display);
+  font-size: 17pt;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.section-title {
+  margin-top: 3.5rem;
+  padding-bottom: 0.5rem;
+  font-size: clamp(1.8rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 560;
+  letter-spacing: -0.01em;
+}
+
+[class~="hx:items-start"] > :is(p, blockquote, ul),
+.tao-panel-body :is(p, ul),
+.tao-about-copy > p,
+.tao-program > :is(p, ul) {
+  max-width: 46rem;
+  margin-top: 0.875rem;
+  line-height: 1.7;
+}
+
+[class~="hx:items-start"] > ul,
+.tao-program > ul {
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+[class~="hx:items-start"] > blockquote,
+.tao-panel-body > blockquote {
+  padding-left: 1.2rem;
+  border-left: 4px solid var(--tao-teal);
+  font-size: 1.15rem;
+  color: var(--tao-ink);
+}
+
+[class~="hx:items-start"] > :is([class*="hextra-"], .tao-program, .tao-staff) {
+  margin-top: 1.5rem;
+}
+
+a { text-underline-offset: 0.2em; }
+
+.hextra-card-image,
+.tao-hero img,
+.tao-split-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.tao-hero { align-items: center; gap: 2.5rem; }
+.tao-hero img { border-radius: 28px 28px 120px 28px; }
+.tao-hero a[data-pswp-width] { cursor: zoom-in; }
+.tao-hero h1 { letter-spacing: -0.015em; }
+
+.tao-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  width: 100%;
+  margin-block: clamp(1.5rem, 3vw, 3rem);
+}
+.tao-split-image { border-radius: 22px; }
+.tao-split-body h4 { margin: 0 0 0.4rem; font-size: 1.3rem; line-height: 1.3; font-weight: 600; }
+.tao-split-body p { margin-top: 0.5rem; line-height: 1.7; }
+
+.tao-staff {
+  display: block;
+  width: 100%;
+  height: 46px;
+  color: var(--tao-teal);
+  margin-top: 2.5rem;
+}
+
+.tao-about {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 23%);
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+  width: 100%;
+  margin-top: 3.5rem;
+}
+
+.tao-about-copy > .section-title { margin-top: 0; }
+.tao-about > img { width: 100%; height: auto; }
+
+.tao-panel {
+  display: grid;
+  grid-template-columns: clamp(4rem, 20vw, 12.5rem) minmax(0, 1fr);
+  gap: clamp(0.75rem, 3vw, 2.5rem);
+  align-items: start;
+  width: 100%;
+}
+.tao-panel-body > :first-child { margin-top: 0; }
+.tao-panel-logo {
+  width: 100%;
+  height: auto;
+  padding: clamp(0.375rem, 2vw, 1rem);
+  border-radius: 20px;
+  background: #fff;
+}
+.tao-program {
+  width: 100%;
+  padding: clamp(1.5rem, 5vw, 3.5rem);
+  border-radius: 32px;
+  background: var(--tao-soft);
+}
+
+.tao-program > .section-title { margin-top: 0; }
+.tao-program > .tao-panel { margin-top: 1.5rem; }
+.tao-panel-body > blockquote { margin-top: 0.875rem; line-height: 1.7; }
+
+.tao-event {
+  --tao-event-bg: #2b3190;
+  background: var(--tao-event-bg);
+  color: #fff;
+}
+
+.tao-event > .section-title,
+.tao-event .tao-program-detail a { color: inherit; }
+
+.tao-event-updates a {
+  display: inline-block;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--tao-event-bg);
+  font-weight: 700;
+}
+
+.tao-concert-list { margin-top: 1.5rem; line-height: 1.7; }
+
+.tao-concert-list li {
+  display: grid;
+  grid-template-columns: clamp(4rem, 16vw, 8.125rem) minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  gap: 0.3rem clamp(0.75rem, 3vw, 1.5rem);
+  align-items: start;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--tao-line);
+}
+
+.tao-concert-list li:first-child { padding-top: 0; }
+.tao-concert-list li:last-child { border-bottom: 0; }
+.tao-concert-list li > :first-child { grid-row: 1 / span 3; }
+.tao-concert-list img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.tao-concert-list p:nth-child(2) { color: var(--tao-muted); font-size: 0.9rem; }
+.tao-concert-list h4 { color: var(--tao-navy); font-size: 1.15rem; font-weight: 650; }
+.tao-concert-list h4 > a:first-child { text-decoration: underline; }
+
+.tao-program > .tao-program-detail {
+  max-width: none;
+  text-align: end;
+}
+
+#contact ~ ul a {
+  color: var(--tao-navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.tao-program-detail a {
+  color: var(--tao-navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.tao-program-detail a::before {
+  content: "→" / "";
+  display: inline-block;
+  margin-inline-end: 0.5em;
+}
+
+.hextra-theme-toggle-options li:has(> button[data-item="system"]) { display: none; }
+
+.tao-footer { padding: 1.5rem 0; font-size: 0.95rem; color: var(--tao-muted); }
+
+.hextra-card-subtitle { color: var(--tao-muted); }
+.tao-event-years a { color: var(--tao-navy); }
+
+@media (max-width: 767px) {
+  .hextra-sidebar-container[aria-hidden="true"] { display: none; }
+}
+
+@media (max-width: 760px) {
+  .tao-about { grid-template-columns: 1fr; gap: 1.25rem; }
+  .tao-about > img { width: min(45%, 140px); justify-self: center; }
+  .tao-panel-body { display: contents; }
+  .tao-panel-body > blockquote { grid-column: 1 / -1; margin-top: 0; }
+  .tao-split { grid-template-columns: 1fr; gap: 1.5rem; }
+  .tao-hero { gap: 1.5rem; }
+}

@@ -1,0 +1,6 @@
+<div class="tao-panel not-prose">
+  <img class="tao-panel-logo" src="{{ .Get "logo" | relURL }}" alt="{{ .Get "alt" }}" width="{{ .Get "width" | default 360 }}" height="{{ .Get "height" | default 506 }}" loading="lazy" decoding="async">
+  <div class="tao-panel-body">
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</div>

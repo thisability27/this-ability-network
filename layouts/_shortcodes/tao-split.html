@@ -1,0 +1,6 @@
+<div class="tao-split not-prose">
+  <img class="tao-split-image" src="{{ .Get "image" | relURL }}" alt="{{ .Get "alt" }}" width="{{ .Get "width" | default 1000 }}" height="{{ .Get "height" | default 750 }}" loading="lazy" decoding="async">
+  <div class="tao-split-body">
+    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  </div>
+</div>

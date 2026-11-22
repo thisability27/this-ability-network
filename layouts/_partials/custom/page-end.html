@@ -1,0 +1,123 @@
+{{- /* Hero and crop metadata must be set before Hextra initializes PhotoSwipe 5.x. */ -}}
+{{- if .IsHome -}}
+  {{- .Store.Set "hasGallery" true -}}
+{{- end -}}
+{{- if .Store.Get "hasGallery" -}}
+<script>
+(function () {
+  document.querySelectorAll('.hextra-gallery--grid .hextra-gallery__link').forEach(function (link) {
+    link.dataset.cropped = 'true';
+  });
+
+  var link = document.querySelector('.tao-hero a[href] > img');
+  link = link && link.parentElement;
+  if (!link) return;
+  var img = link.querySelector('img');
+  var holder = link.parentElement;
+  if (!img.getAttribute('width') || !img.getAttribute('height')) return;
+
+  holder.id = 'tao-hero-gallery';
+  holder.setAttribute('data-pswp-gallery', '#tao-hero-gallery');
+  link.dataset.pswpWidth = img.getAttribute('width');
+  link.dataset.pswpHeight = img.getAttribute('height');
+  link.dataset.cropped = 'true';
+})();
+
+(function () {
+  if (!Element.prototype.animate || !window.CSS || !CSS.supports('clip-path', 'inset(0 round 4px)')) return;
+
+  var clicked = null;
+  document.addEventListener('click', function (event) {
+    var a = event.target.closest && event.target.closest('a[data-pswp-width]');
+    if (a) clicked = a;
+  }, true);
+
+  function thumbLink(root) {
+    var cx = innerWidth / 2, cy = innerHeight / 2;
+    var imgs = root.querySelectorAll('.pswp__img:not(.pswp__img--placeholder)');
+    for (var i = 0; i < imgs.length; i++) {
+      var r = imgs[i].getBoundingClientRect();
+      if (r.left <= cx && cx <= r.right && r.top <= cy && cy <= r.bottom) {
+        var path = new URL(imgs[i].src, location.href).pathname;
+        var links = document.querySelectorAll('a[data-pswp-width]');
+        for (var j = 0; j < links.length; j++) {
+          if (new URL(links[j].href, location.href).pathname === path) return links[j];
+        }
+      }
+    }
+    return clicked;
+  }
+
+  function radii(el) {
+    var cs = getComputedStyle(el);
+    return ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft'].map(function (corner) {
+      return (cs['border' + corner + 'Radius'] || '0px').split(' ')[0];
+    }).join(' ');
+  }
+
+  document.addEventListener('transitionrun', function (event) {
+    var container = event.target;
+    if (event.propertyName !== 'transform' || !container.classList || !container.classList.contains('pswp__container')) return;
+    {{- /* Inline overflow identifies the crop transition independently of slide changes. */}}
+    if (container.style.overflow !== 'hidden') return;
+
+    var root = container.closest('.pswp');
+    var wrap = root && root.querySelector('.pswp__scroll-wrap');
+    var link = root && thumbLink(root);
+    var thumb = link && link.querySelector('img');
+    if (!wrap || !thumb) return;
+
+    var opening = root.classList.contains('pswp--ui-visible');
+    var v = wrap.getBoundingClientRect();
+    var t = thumb.getBoundingClientRect();
+    var cs = getComputedStyle(container);
+    var shape = 'inset(' + (t.top - v.top) + 'px ' + (v.right - t.right) + 'px ' + (v.bottom - t.bottom) + 'px ' + (t.left - v.left) + 'px round ' + radii(thumb) + ')';
+    var full = 'inset(0px 0px 0px 0px round 0px 0px 0px 0px)';
+
+    wrap.getAnimations().forEach(function (old) { old.cancel(); });
+    var animation = wrap.animate(
+      { clipPath: opening ? [shape, full] : [full, shape] },
+      { duration: parseFloat(cs.transitionDuration) * 1000, easing: cs.transitionTimingFunction, fill: 'both' }
+    );
+    if (opening) animation.onfinish = function () { animation.cancel(); };
+  }, true);
+})();
+</script>
+<script>
+(function () {
+  var name = {{ T "tao-photo-viewer" }};
+  var labels = {
+    close: {{ T "tao-photo-close" }},
+    zoom: {{ T "tao-photo-zoom" }},
+    "arrow--prev": {{ T "tao-photo-previous" }},
+    "arrow--next": {{ T "tao-photo-next" }}
+  };
+  new MutationObserver(function (changes) {
+    changes.forEach(function (change) {
+      change.addedNodes.forEach(function (dialog) {
+        if (!dialog.matches?.('.pswp[role="dialog"]')) return;
+        dialog.setAttribute('aria-label', name);
+        dialog.setAttribute('aria-modal', 'true');
+        Object.entries(labels).forEach(function (entry) {
+          var button = dialog.querySelector('.pswp__button--' + entry[0]);
+          if (!button) return;
+          button.setAttribute('aria-label', entry[1]);
+          button.title = entry[1];
+        });
+        dialog.addEventListener('keydown', function (event) {
+          if (event.key !== 'Tab') return;
+          var buttons = Array.from(dialog.querySelectorAll('button:not(:disabled)')).filter(function (button) {
+            return button.getClientRects().length && getComputedStyle(button).visibility === 'visible';
+          });
+          var current = buttons.indexOf(document.activeElement);
+          if (!buttons.length || current === -1 || current === (event.shiftKey ? 0 : buttons.length - 1)) {
+            event.preventDefault();
+            (buttons[event.shiftKey ? buttons.length - 1 : 0] || dialog).focus();
+          }
+        });
+      });
+    });
+  }).observe(document.body, { childList: true });
+})();
+</script>
+{{- end -}}

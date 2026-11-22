@@ -1,0 +1,141 @@
+baseURL = 'https://this.ability-net.work/'
+title = 'This Ability Network'
+defaultContentLanguage = 'en'
+defaultContentLanguageInSubdir = true
+
+[languages.en]
+weight = 1
+label = 'English'
+locale = 'en-US'
+
+[languages.ko]
+weight = 2
+label = '한국어'
+locale = 'ko-KR'
+
+[module]
+[[module.imports]]
+path = 'github.com/imfing/hextra'
+[[module.mounts]]
+source = 'assets/image'
+target = 'static/assets/image'
+
+[params.search]
+enable = false
+
+[params.footer]
+enable = true
+displayPoweredBy = false
+
+[params.theme]
+default = 'light'
+displayToggle = true
+
+[markup.goldmark.parser.attribute]
+block = true
+title = true
+
+[params.navbar.logo]
+path = 'assets/image/network-logo-mark.png'
+width = 35
+height = 35
+
+[[languages.en.menus.main]]
+identifier = 'tao-network'
+name = 'The Network'
+url = '/en/#network'
+weight = 1
+
+[[languages.en.menus.main]]
+identifier = 'tao-programs'
+name = 'Programs'
+weight = 2
+
+[[languages.en.menus.main]]
+identifier = 'tao-orchestra'
+name = 'This Ability Orchestra'
+url = '/en/#orchestra'
+parent = 'tao-programs'
+weight = 1
+
+[[languages.en.menus.main]]
+identifier = 'tao-concerts'
+name = 'Concerts'
+url = '/en/#concerts'
+parent = 'tao-programs'
+weight = 2
+
+[[languages.en.menus.main]]
+identifier = 'tao-event-2027'
+name = '2027 International Event'
+url = '/en/#2027'
+parent = 'tao-programs'
+weight = 3
+
+[[languages.en.menus.main]]
+identifier = 'tao-contact'
+name = 'Contact & Support'
+url = '/en/#contact'
+weight = 5
+
+[[languages.en.menus.main]]
+identifier = 'theme'
+weight = 6
+[languages.en.menus.main.params]
+type = 'theme-toggle'
+
+[[languages.en.menus.main]]
+identifier = 'language'
+weight = 7
+[languages.en.menus.main.params]
+type = 'language-switch'
+
+[[languages.ko.menus.main]]
+identifier = 'tao-network'
+name = 'The Network'
+url = '/ko/#network'
+weight = 1
+
+[[languages.ko.menus.main]]
+identifier = 'tao-programs'
+name = 'Programs'
+weight = 2
+
+[[languages.ko.menus.main]]
+identifier = 'tao-orchestra'
+name = 'This Ability Orchestra'
+url = '/ko/#orchestra'
+parent = 'tao-programs'
+weight = 1
+
+[[languages.ko.menus.main]]
+identifier = 'tao-concerts'
+name = 'Concerts'
+url = '/ko/#concerts'
+parent = 'tao-programs'
+weight = 2
+
+[[languages.ko.menus.main]]
+identifier = 'tao-event-2027'
+name = '2027 International Event'
+url = '/ko/#2027'
+parent = 'tao-programs'
+weight = 3
+
+[[languages.ko.menus.main]]
+identifier = 'tao-contact'
+name = 'Contact & Support'
+url = '/ko/#contact'
+weight = 5
+
+[[languages.ko.menus.main]]
+identifier = 'theme'
+weight = 6
+[languages.ko.menus.main.params]
+type = 'theme-toggle'
+
+[[languages.ko.menus.main]]
+identifier = 'language'
+weight = 7
+[languages.ko.menus.main.params]
+type = 'language-switch'
