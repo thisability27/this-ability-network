@@ -6,7 +6,8 @@
     "changeset": "changeset add",
     "changeset:status": "changeset status",
     "release:version": "changeset version && npm install --package-lock-only --ignore-scripts",
-    "test:accessibility": "playwright test"
+    "test:accessibility": "playwright test",
+    "test:wcag": "playwright test wcag"
   },
   "devDependencies": {
     "@changesets/cli": "3.0.3",

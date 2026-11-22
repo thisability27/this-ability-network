@@ -41,6 +41,21 @@
   box-shadow: none !important;
 }
 
+.tao-event :focus-visible { outline-color: #fff !important; }
+
+.subheading-anchor {
+  display: inline-block;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+}
+.subheading-anchor::after {
+  content: "#";
+  color: var(--tao-muted);
+}
+.subheading-anchor:focus-visible { opacity: 1; }
+
 body {
   background: var(--tao-bg);
   color: var(--tao-ink);
