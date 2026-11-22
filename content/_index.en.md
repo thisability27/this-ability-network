@@ -49,9 +49,9 @@ Our members play strings, winds, piano, and more, side by side. Rehearsals and c
 
 {{< tao-program >}}
 {{< tao-program-copy >}}
-### Concerts {#concerts .section-title}
+### Concerts that give back {#concerts .section-title}
 
-Explore our past concerts and community fundraisers.
+Each year the Orchestra performs a fundraiser concert for Children’s Hospital Los Angeles, alongside other performances through the year.
 {{< /tao-program-copy >}}
 
 {{< tao-concert-list >}}

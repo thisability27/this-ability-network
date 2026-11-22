@@ -49,9 +49,9 @@ This Ability Network는 로스앤젤레스의 501(c)(3) 비영리단체입니다
 
 {{< tao-program >}}
 {{< tao-program-copy >}}
-### 연주회 {#concerts .section-title}
+### 나눔으로 이어지는 연주회 {#concerts .section-title}
 
-지난 연주회와 지역사회를 위한 후원 공연을 만나보세요.
+오케스트라는 매년 로스앤젤레스 어린이병원을 위한 후원 콘서트를 열고, 한 해 동안 다른 공연도 함께합니다.
 {{< /tao-program-copy >}}
 
 {{< tao-concert-list >}}
