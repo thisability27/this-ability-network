@@ -138,6 +138,7 @@ const rules = [
     title: 'Pointer targets are at least 24x24 CSS px or have 24px of spacing (checked in the current UI state)',
     async run(page) {
       await install(page);
+      await page.evaluate(() => window.scrollTo(0, 0));
       return page.evaluate((selector) => {
         const w = window.__wcag;
         const targets = [...document.querySelectorAll(selector)].filter((el) => w.visible(el));

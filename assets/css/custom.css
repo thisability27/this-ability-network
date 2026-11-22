@@ -43,18 +43,8 @@
 
 .tao-event :focus-visible { outline-color: #fff !important; }
 
-.subheading-anchor {
-  display: inline-block;
-  min-width: 1.5rem;
-  min-height: 1.5rem;
-  text-align: center;
-  vertical-align: middle;
-}
-.subheading-anchor::after {
-  content: "#";
-  color: var(--tao-muted);
-}
-.subheading-anchor:focus-visible { opacity: 1; }
+/* Hextra heading permalinks render empty here, so hide them from sight and the tab order. */
+.subheading-anchor { display: none; }
 
 body {
   background: var(--tao-bg);
