@@ -182,6 +182,7 @@ a { text-underline-offset: 0.2em; }
 
 .tao-about-copy > .section-title { margin-top: 0; }
 .tao-about > img { width: 100%; height: auto; }
+.dark .tao-about > img { filter: invert(1); }
 
 .tao-panel {
   display: grid;

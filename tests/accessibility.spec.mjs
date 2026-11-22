@@ -63,7 +63,7 @@ for (const language of ['en', 'ko']) {
             }
           }
           await expect(page.locator('main img:not([alt])')).toHaveCount(0);
-          await expect(page.locator('main img[alt=""]:not([src$="network-logo-color.png"])')).toHaveCount(0);
+          await expect(page.locator('main img:not([alt]), main img[alt=""]')).toHaveCount(0);
           await expect(page.locator('.hextra-nav-container nav > a').first()).toHaveAccessibleName('This Ability Network');
           if (width === 320) {
             expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
@@ -168,6 +168,35 @@ for (const language of ['en', 'ko']) {
       await close.click();
       await expect(dialog).toBeHidden();
       await expect(photo).toBeFocused();
+    });
+  }
+
+  test(`${language} the same image has the same alt text on every page`, async ({ page }) => {
+    const alts = new Map();
+    for (const route of [home, archive, ...details]) {
+      await page.goto(`/${language}/${route}`);
+      const images = await page.locator('main img').evaluateAll((nodes) => nodes.map((node) => [node.getAttribute('src'), node.getAttribute('alt')]));
+      for (const [src, alt] of images) alts.set(src, (alts.get(src) ?? new Set()).add(alt));
+    }
+    for (const [src, set] of alts) expect([...set], src).toHaveLength(1);
+  });
+
+  for (const route of [home, archive, ...details]) {
+    test(`${language} reader extraction keeps every image with its description on /${language}/${route}`, async ({ page }) => {
+      await page.goto(`/${language}/${route}`);
+      await page.addScriptTag({ path: readability });
+      const result = await page.evaluate(() => {
+        const mainImages = Array.from(document.querySelectorAll('main img'), (node) => [new URL(node.getAttribute('src'), location.href).pathname, node.alt]);
+        const article = new window.Readability(document.cloneNode(true)).parse();
+        const content = new DOMParser().parseFromString(article.content, 'text/html');
+        const readerImages = Array.from(content.querySelectorAll('img'), (node) => [new URL(node.getAttribute('src'), location.href).pathname, node.alt]);
+        const headings = Array.from(document.querySelectorAll('main h2, main h3, main h4'), (node) => node.textContent.replace('#', '').trim());
+        const readerHeadings = Array.from(content.querySelectorAll('h2, h3, h4'), (node) => node.textContent.replace('#', '').trim());
+        return { mainImages, readerImages, headings, readerHeadings };
+      });
+      expect(result.readerImages).toEqual(result.mainImages);
+      for (const [src, alt] of result.readerImages) expect(alt.length, src).toBeGreaterThanOrEqual(20);
+      for (const heading of result.headings) expect(result.readerHeadings, heading).toContain(heading);
     });
   }
 

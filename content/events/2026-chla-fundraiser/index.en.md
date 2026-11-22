@@ -13,4 +13,4 @@ This Ability Orchestra held its annual benefit concert for Children’s Hospital
 
 ## Concert Poster
 
-[![Poster for the 2026 CHLA Fundraiser Concert](/assets/image/chla-fundraiser-2026.jpg)](/assets/image/chla-fundraiser-2026.jpg)
+[![Poster for the 2026 CHLA Fundraiser Concert: Children’s Hospital Los Angeles Fundraiser Concert, Saturday, July 25, 2026, 11 a.m. A wreath of pink roses surrounds the This Ability Orchestra logo and the Children’s Hospital Los Angeles logo on a blue-green gradient. Sponsor logos: YNC Nasung Youngnak Church, GBC, and The Korea Times. Proceeds benefit the Spiritual Care Services Department at Children’s Hospital Los Angeles; more at www.chla.org.](/assets/image/chla-fundraiser-2026.jpg)](/assets/image/chla-fundraiser-2026.jpg)
