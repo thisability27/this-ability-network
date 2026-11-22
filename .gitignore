@@ -8,3 +8,4 @@ playwright-report/
 .agents/skills/accessibility-scan/
 .agents/skills/accessibility-inspect/
 .agents/skills/shared/
+.DS_Store
