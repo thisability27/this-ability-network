@@ -252,6 +252,13 @@ a { text-underline-offset: 0.2em; }
   text-align: end;
 }
 
+#contact ~ ul a {
+  color: var(--tao-navy);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
 .tao-program-detail a {
   color: var(--tao-navy);
   font-weight: 600;
