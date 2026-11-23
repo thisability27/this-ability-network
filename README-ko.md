@@ -2,7 +2,10 @@
 
 # This Ability Network
 
-<img width="220" src="https://raw.githubusercontent.com/thisability27/this-ability-network/main/assets/image/network-logo-color.png" alt="This Ability Network 로고" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/thisability27/this-ability-network/main/assets/image/network-logo-dark.png">
+  <img width="220" src="https://raw.githubusercontent.com/thisability27/this-ability-network/main/assets/image/network-logo-light.png" alt="This Ability Network 로고" />
+</picture>
 
 [![Hugo 0.170.1](https://img.shields.io/badge/Hugo-0.170.1-FF4088?logo=hugo&logoColor=white)](.github/workflows/pages.yaml)
 [![Hextra 0.13.0](https://img.shields.io/badge/Hextra-0.13.0-525DDC)](go.mod)
