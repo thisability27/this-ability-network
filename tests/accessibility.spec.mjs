@@ -131,15 +131,29 @@ for (const language of ['en', 'ko']) {
     await expect(page.locator('main[inert], .hextra-footer[inert]')).toHaveCount(0);
   });
 
-  test(`${language} footer names follow visible language and theme`, async ({ page }) => {
+  test(`${language} footer names and home logo follow the active theme`, async ({ page }) => {
     await page.goto(`/${language}/`);
     const footer = page.locator('.hextra-footer');
+    const logo = page.locator('main .tao-about > img');
+    await logo.scrollIntoViewIfNeeded();
+    await expect(logo).toHaveAttribute('alt', /\S/);
+    await expect(logo).toHaveAttribute('src', /network-logo-light\.png$/);
+    await expect.poll(() => logo.evaluate((image) => image.naturalWidth)).toBe(1578);
     await expect(footer.locator('.hextra-language-switcher')).toHaveAccessibleName(korean ? /^한국어,/ : /^English,/);
     const theme = footer.locator('.hextra-theme-toggle');
     await expect(theme).toHaveAccessibleName(korean ? /^밝은 테마,/ : /^Light,/);
     await theme.click();
     await footer.locator('[data-item="dark"]').click();
     await expect(theme).toHaveAccessibleName(korean ? /^어두운 테마,/ : /^Dark,/);
+    await expect(logo).toHaveAttribute('src', /network-logo-dark\.png$/);
+    await expect.poll(() => logo.evaluate((image) => image.naturalWidth)).toBe(1578);
+
+    await expect.poll(async () => (await page.context().cookies()).find((cookie) => cookie.name === 'tao-theme')?.value).toBe('dark');
+    await page.reload();
+    await expect(logo).toHaveAttribute('src', /network-logo-dark\.png$/);
+    await theme.click();
+    await footer.locator('[data-item="light"]').click();
+    await expect(logo).toHaveAttribute('src', /network-logo-light\.png$/);
   });
 
   for (const route of [home, archive, details[2]]) {

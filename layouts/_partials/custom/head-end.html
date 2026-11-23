@@ -35,6 +35,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  var logo = document.querySelector('img[data-tao-dark-src]');
+  if (logo) {
+    var lightSrc = logo.getAttribute('src');
+    var syncLogo = function () {
+      var next = document.documentElement.classList.contains('dark') ? logo.dataset.taoDarkSrc : lightSrc;
+      if (logo.getAttribute('src') !== next) logo.setAttribute('src', next);
+    };
+    new MutationObserver(syncLogo).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    syncLogo();
+  }
+
   var hamburger = document.querySelector('.hextra-hamburger-menu');
   if (hamburger) {
     var syncInert = function () {
